@@ -1,6 +1,9 @@
 package it.unicam.cs.ids.controller;
 
-import java.util.Date;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,10 +17,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.unicam.cs.ids.model.Commento;
 import it.unicam.cs.ids.model.Event;
 import it.unicam.cs.ids.model.Location;
 import it.unicam.cs.ids.model.Topic;
+import it.unicam.cs.ids.repository.CommentoRepository;
 import it.unicam.cs.ids.repository.EventRepository;
+import it.unicam.cs.ids.repository.UserRepository;
 
 @RestController
 public class EventController {
@@ -25,14 +31,40 @@ public class EventController {
 	@Autowired
 	private EventRepository eventRepository;
 	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private CommentoRepository commentoRepository;
+
+	@PostMapping("/events/toConfirm")
+	public void createToConfirm(@RequestBody Map<String, String> body) {
+		String title = body.get("title");
+        String description = body.get("description");
+        String data = body.get("date");
+     	String latitude = body.get("latitude");
+        String longitude = body.get("longitude");
+        Location location = new Location(Double.parseDouble(latitude),Double.parseDouble(longitude));
+        Topic topic = new Topic(Integer.parseInt(body.get("topic")));
+        String organizzatore = body.get("organizzatore");
+        String numPartecipanti = body.get("numPartecipanti");
+	    int partecipanti = Integer.parseInt(numPartecipanti);
+	    if(eventRepository.findByTitle(title) != null)
+	    	return;
+	    Event e = new Event(title,description,data,location,topic,organizzatore,partecipanti);
+	    e.getParticipants().add(organizzatore);
+	    eventRepository.save(e);
+	}
+	
 	
 	  @GetMapping("/events")
 	  /**
 	   * Ritorna la lista di tutti gli eventi disponibili
 	   */
 	    public List<Event> index(){
-	        return eventRepository.findAll();
-	    }
+		  return eventRepository.findAll();
+	  }
+	    
 	  
 	  @GetMapping("/events/{id}")
 	  /**
@@ -47,14 +79,13 @@ public class EventController {
 	  /**
 	   * Crea un nuovo evento
 	   */
-	    public void create(@RequestBody Map<String, String> body){
+	    public void create(@RequestBody Map<String,String> body){
 		    String title = body.get("title");
 	        String description = body.get("description");
 	       
-	        Long date = Long.parseLong(body.get("date"));
-	        Date dateEvent = new Date(date);
 	        
-	        String latitude = body.get("latitude");
+	        String data = body.get("date");
+	     	String latitude = body.get("latitude");
 	        String longitude = body.get("longitude");
 	        Location location = new Location(Double.parseDouble(latitude),Double.parseDouble(longitude));
 	        Topic topic = new Topic(Integer.parseInt(body.get("topic")));
@@ -63,7 +94,7 @@ public class EventController {
 		    int partecipanti = Integer.parseInt(numPartecipanti);
 		    if(eventRepository.findByTitle(title) != null)
 		    	return;
-		    Event e = new Event(title,description,dateEvent,location,topic,organizzatore,partecipanti);
+		    Event e = new Event(title,description,data,location,topic,organizzatore,partecipanti);
 		    e.getParticipants().add(organizzatore);
 		    eventRepository.save(e);
 	    }
@@ -118,8 +149,8 @@ public class EventController {
 	        Event event = eventRepository.findByid(eventId);
 	        event.setTitle(body.get("title"));
 	        event.setDescription(body.get("description"));
-	        Long date = Long.parseLong(body.get("date"));
-	        event.getDate().setTime(date);
+	        String data = body.get("date");
+	        event.setDate(data);
 	        event.getLocation().setLatitudine(Double.parseDouble(body.get("latitude")));
 	        event.getLocation().setLongitudine(Double.parseDouble(body.get("longitude")));
 	        String numPartecipanti = body.get("numPartecipanti");
@@ -136,4 +167,61 @@ public class EventController {
 	        eventRepository.deleteById(eventId);
 	        return true;
 	    }
+	  
+	  @GetMapping("/events/topics/{id}")
+	  public List<Event> showByTopic(@PathVariable String id){
+		  List<Event> eventi = new ArrayList<Event>();
+		  for(Event e : this.eventRepository.findAll()) {
+			  if(e.getTopic().getId() == Integer.parseInt(id)) {
+				  eventi.add(e);
+			  }
+		  }
+		return eventi;
+	  }
+	  
+	  
+	  @GetMapping("/events/locations/")
+	  /**
+	   * Mostra tutti gli eventi distanti meno di 100km
+	   */
+	  public List<Event> showByLocation(@RequestBody Map<String,String> location){
+		  double latitudine = Double.parseDouble(location.get("latitudine"));
+		  double longitudine = Double.parseDouble(location.get("longitudine"));
+		  List<Event> eventi = new ArrayList<Event>();
+		  for(Event e : this.eventRepository.findAll()) { 
+			  if(e.getLocation().distance(latitudine, longitudine) < 100) {
+				  eventi.add(e);
+			  }
+		  }
+		  return eventi;
+	  }
+	  
+	  @GetMapping("/events/{id}/comments")
+	  public List<Commento> showComments(@PathVariable String id){
+		  return this.eventRepository.findByid(Integer.parseInt(id)).getCommento();
+	  }
+	  
+	  @PostMapping("/events/{id}/comments")
+	  public void addComment(@PathVariable String id, @RequestBody Map<String,String> commento) {
+		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
+		  LocalDateTime now = LocalDateTime.now();
+		  Commento nuovoCommento = new Commento(
+				  commento.get("body"),
+				  this.userRepository.findByEmail(commento.get("email")),
+				  dtf.format(now)  );   
+			
+		  Event evento = this.eventRepository.findByid(Integer.parseInt(id));
+		  evento.getCommento().add(nuovoCommento);
+		  this.eventRepository.save(evento);
+	  }
+	  
+	  @PutMapping("/events/{id}/comments/{id2}")
+	  public void modificaCommento(@PathVariable String id, @PathVariable String id2,@RequestBody Map<String,String> commento) {
+		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
+		  LocalDateTime now = LocalDateTime.now();
+		  Commento com = this.commentoRepository.findById(Integer.parseInt(id2));
+		  com.setBody(commento.get("body"));
+		  com.setOrarioPubblicazione(dtf.format(now));
+		  this.commentoRepository.save(com);
+	  }
 }

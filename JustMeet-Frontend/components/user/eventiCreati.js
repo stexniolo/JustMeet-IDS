@@ -48,7 +48,7 @@ export default class EventiCreati extends React.Component {
 
   <Card
   title={data.item.title}
-   // image={}
+  image={imageMap[data.item.topic]}
   >
   <Text style={{marginBottom: 10}}>
     {data.item.description}{"\n\n"}
@@ -100,6 +100,14 @@ export default class EventiCreati extends React.Component {
       keyExtractor= {item=>item.id.toString()}
   />
   )}
+  }
+
+  var imageMap = {
+    'AMICI' : require('../images/AMICI.jpg'),
+    'GENERALE':  require('../images/GENERALE.jpg'),
+    'PARTY':  require('../images/PARTY.jpg'),
+    'SPORT':  require('../images/SPORT.jpg'),
+    'STUDIO':  require('../images/STUDIO.jpg')
   }
 
   const { width: WIDTH } = Dimensions.get('window')

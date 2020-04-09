@@ -69,7 +69,7 @@ export default class GoogleLogin extends React.Component {
           this.state.email === "stefano.perniola@studenti.unicam.it" ? (
           this.props.navigation.replace("Admin")
           ) :
-            this.props.navigation.replace("JustMeet",{
+            this.props.navigation.replace("Home Page",{
                 nome: this.state.nome,
                 cognome: this.state.cognome,
                 id: this.state.id,

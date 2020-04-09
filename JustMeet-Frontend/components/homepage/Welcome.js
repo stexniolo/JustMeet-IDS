@@ -28,6 +28,7 @@ const slides = [
     title: 'CREA EVENTI',
     text: 'Organizzare un evento non è mai stato così semplice!',
     backgroundColor: '#F7BB64',
+    //image: require('../images/JM2.jpg'),
   },
   {
     key: 'k2',

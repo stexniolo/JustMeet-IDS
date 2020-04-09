@@ -1,25 +1,23 @@
 package it.unicam.cs.ids.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
 
 @Entity
@@ -40,8 +38,7 @@ public class Event {
 	private String description;
 	
 	@Column
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm", shape = Shape.STRING)
-	private Date date;
+	private String date; // dd/mm/yyyy
 	
 	@JoinColumn
 	@OneToOne(cascade = CascadeType.ALL)
@@ -65,14 +62,16 @@ public class Event {
 	@Column
 	private int adesioniAttuali;
 	
+	@JoinColumn
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Commento> commento;
+	
 	public Event() {
 
 	}
 	
-	public Event(String title,String description,
-			     Date date ,Location luogo,
-			     Topic topic,
-			     String organizzatore,int numPartecipanti) {
+	public Event(String title,String description,String date ,Location luogo,
+			     Topic topic, String organizzatore,int numPartecipanti) {
 		this.title = title;
 		this.description = description;
 		this.date = date;
@@ -82,10 +81,9 @@ public class Event {
 		this.participants = new ArrayList<String>();
 		this.numPartecipanti = numPartecipanti;
 		this.adesioniAttuali = 1;
+		this.commento = new ArrayList<Commento>();
 	}
 	
-	
-
 	public int getAdesioniAttuali() {
 		return this.adesioniAttuali;
 	}
@@ -130,11 +128,11 @@ public class Event {
 	}
 
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -202,6 +200,34 @@ public class Event {
 			return false;
 		return true;
 	}	
+	
+	public boolean before(String date) {
+		//format(dd-mm-yyyy)
+		int anno1 = Integer.parseInt(this.getDate().substring(6, 9));
+		int anno2 = Integer.parseInt(date.substring(6, 9));
+		
+		int mese1 = Integer.parseInt(this.getDate().substring(3,4));
+		int mese2 = Integer.parseInt(date.substring(3,4));
+		
+		int giorno1 = Integer.parseInt(this.getDate().substring(0,1));
+		int giorno2 = Integer.parseInt(date.substring(0,1));
+		
+		if(anno1<anno2) 
+			return true;
+		if(anno1 == anno2 && mese1 < mese2)
+			return true;
+		if(anno1 == anno2 && mese1 == mese2 && giorno1 < giorno2)
+			return true;
+		return false;
+	}
+
+	public List<Commento> getCommento() {
+		return commento;
+	}
+
+	public void setCommento(List<Commento> commento) {
+		this.commento = commento;
+	}
 	
 	
 	

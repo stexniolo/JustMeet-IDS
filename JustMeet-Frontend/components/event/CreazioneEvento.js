@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Text,Button,StyleSheet,Dimensions,TextInput,TouchableOpacity} from 'react-native';
+import { View, Text,Button,StyleSheet,Dimensions,TextInput,TouchableOpacity, Alert,ScrollView} from 'react-native';
+import { TextInputMask } from 'react-native-masked-text'
 
 export default class CreazioneEvento extends React.Component {
   constructor(props){
@@ -8,9 +9,7 @@ export default class CreazioneEvento extends React.Component {
       emailCreatore: this.props.route.params.email,
       title: '',
       description: '',
-      date: '',
       location: '',
-      orario: '',
       organizzatore: '',
       numPartecipanti: ''
     };
@@ -32,10 +31,6 @@ handleLocation = (text) => {
   this.setState({location: text})
 }
 
-handleOrario = (text) => {
-  this.setState({orario: text})
-}
-
 handleOrganizzatore = (text) => {
   this.setState({organizzatore: text})
 }
@@ -46,7 +41,7 @@ handleNumPartecipanti = (text) => {
 
   render() {
     return (
-            <View style={styles.inputContainer}>
+            <ScrollView style={styles.inputContainer}>
                 <TextInput 
                     style={styles.input}
                     placeholder={'Nome'}
@@ -63,14 +58,7 @@ handleNumPartecipanti = (text) => {
                     value = {this.state.description}
                     onChangeText = {this.handleDescription}
                 />
-                <TextInput 
-                    style={styles.input}
-                    placeholder={'Data'}
-                    placeholderTextColor={'grey'}
-                    underlineColorAndroid='transparent' 
-                    value = {this.state.date}
-                    onChangeText = {this.handleDate}
-                />      
+
                 <TextInput 
                     style={styles.input}
                     placeholder={'Luogo'}
@@ -79,14 +67,7 @@ handleNumPartecipanti = (text) => {
                     value = {this.state.location}
                     onChangeText = {this.handleLocation}
                 />
-                  <TextInput 
-                    style={styles.input}
-                    placeholder={'Orario'}
-                    placeholderTextColor={'grey'}
-                    underlineColorAndroid='transparent' 
-                    value = {this.state.orario}
-                    onChangeText = {this.handleOrario}
-                />
+              
 
                 <TextInput 
                     style={styles.input}
@@ -104,18 +85,26 @@ handleNumPartecipanti = (text) => {
                     underlineColorAndroid='transparent' 
                     value = {this.state.numPartecipanti}
                     onChangeText = {this.handleNumPartecipanti}
-                />       
+                />     
+
+              <TouchableOpacity
+                style={styles.button}
+                onPress = {() => this.props.navigation.replace("Date Picker")}>
+                <Text style = {styles.text}> Scegli la Data </Text>
+              </TouchableOpacity>
+
  
              <TouchableOpacity
               style={styles.button}
               onPress = {() => 
                 this.props.navigation.navigate('PostEvento',{
-                  emailCreatore: this.state.emailCreatore,
+                  //emailCreatore: this.state.emailCreatore,
                   title: this.state.title,
                   description: this.state.description,
-                  date: this.state.date,
-                  location: this.state.location,
-                  orario: this.state.orario,
+                  date: this.props.route.params.dataSelezionata.date,
+                  latitude: "43.12345",
+                  longitude: "12345",
+                  topic: "5",
                   organizzatore: this.state.organizzatore,
                   numPartecipanti: this.state.numPartecipanti
                 })
@@ -123,7 +112,7 @@ handleNumPartecipanti = (text) => {
                 <Text style = {styles.text}> Pubblica </Text>
               </TouchableOpacity>
               
-              </View>
+              </ScrollView>
               
            
     );

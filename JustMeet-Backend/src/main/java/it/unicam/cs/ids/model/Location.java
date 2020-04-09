@@ -30,6 +30,19 @@ public class Location {
 		this.latitudine = latitudine;
 		this.longitudine = longitudine;
 	}
+	
+	public double distance(double lat2, double lon2) {
+		if ((this.getLatitudine() == lat2) && (this.getLongitudine() == lon2)) 
+			return 0;
+		
+		double theta = this.getLongitudine() - lon2;
+		double dist = Math.sin(Math.toRadians(this.getLatitudine())) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(this.getLatitudine())) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
+		dist = Math.acos(dist);
+		dist = Math.toDegrees(dist);
+		dist = dist * 60 * 1.1515;
+		dist = dist * 1.609344; // converte in chilometri
+		return dist;
+		}
 
 	public int getId() {
 		return id;

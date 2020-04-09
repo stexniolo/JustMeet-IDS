@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, Image, StyleSheet ,ImageBackground,Dimensions} from 'react-native'
 import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Asset } from "expo-asset";
 
 
 const { width: WIDTH } = Dimensions.get('window')
@@ -20,28 +21,22 @@ export default class HomePage extends React.Component {
   }
 
     render(){
-        return (
-          
-    <View style={{flex: 1}}>
+      return (
 
-  
-      <View style={styles.card}>
-        <Text style={styles.header}>Benvenuto {this.state.nome} </Text>
-        <Image style={styles.image} source={{uri: this.state.photo}} />     
-      </View>  
+    
+      <ImageBackground source={require("../images/tenor9.gif")} style={styles.image}>
 
-      <View>
+        <View style={styles.card}>
+           <Image source={require('../images/FontText.png')} /> 
+        </View>
 
-      <TouchableOpacity style={styles.button}
-                        onPress={() => this.props.navigation.navigate('Google Maps')}>
-          <Text style = {styles.text}> Vai alla mappa </Text>
+
+        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profilo Utente',{email: this.state.email, })}>
+          <Text style = {styles.text}> Il mio profilo </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}
-                        onPress={() => this.props.navigation.navigate('Profilo Utente',{
-                          email: this.state.email,
-                        })}>
-          <Text style = {styles.text}> Il mio profilo </Text>
+      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Google Maps')}>
+          <Text style = {styles.text}> Vai alla mappa </Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Eventi',{
@@ -51,24 +46,42 @@ export default class HomePage extends React.Component {
           <Text style = {styles.text}> Scopri gli eventi </Text>
       </TouchableOpacity>
         
-      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Crea un evento',{
+      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Scegli Data',{
               email: this.state.email
-      })}>
+              })}>
           <Text style = {styles.text}> Crea un evento </Text>
       </TouchableOpacity>
-      </View>
-      
-    </View>
-    
-          );
+   </ImageBackground>
+    );
     }
 
 }
 
 
-const styles = StyleSheet.create({
-  card: {
+const styles = StyleSheet.create({ 
+  tinyLogo: {
+    width: 100,
+    height: 100,
+  },
+  container: {
     flex: 1,
+    flexDirection: "column"
+  },
+  backgroundContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+},
+image: {
+  flex: 1,
+  resizeMode: "cover",
+  justifyContent: "center",
+  alignItems: 'center',
+  width: '100%',
+  height: '100%'
+},
+  card: {
+    flex: 0.9,
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center'
@@ -85,27 +98,22 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   header: {
-    color: 'black',
+    color: 'white',
     fontSize: 25
   },
-  image: {
-    marginTop: 15,
-    width: 150,
-    height: 150,
-    borderColor: "rgba(0,0,0,0.2)",
-    borderWidth: 3,
-    borderRadius: 150
-  },
   text: {
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold'
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
     padding: 20,
-    marginTop: 20
+    marginTop: 20,
+    borderRadius:50,
+    width: 300,
+    backgroundColor: 'rgba(255, 255, 255, 0.4)'
+    //backgroundColor: 'rgba(52, 52, 52, 0.3)'
   },
 });
