@@ -1,19 +1,23 @@
 import React from 'react'
 import { View, Text,Button,StyleSheet,Dimensions,TextInput,TouchableOpacity, Alert,ScrollView} from 'react-native';
-import { TextInputMask } from 'react-native-masked-text'
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
+
 
 export default class CreazioneEvento extends React.Component {
   constructor(props){
     super(props);
     this.state = { 
-      emailCreatore: this.props.route.params.email,
+      //emailCreatore: this.props.route.params.email,
+      dataScelta:this.props.route.params.giorno+"/"+this.props.route.params.mese+"/"+this.props.route.params.anno+" "+this.props.route.params.ore+":"+this.props.route.params.minuti,
       title: '',
       description: '',
-      location: '',
       organizzatore: '',
-      numPartecipanti: ''
+      numPartecipanti: '',
+
     };
   }
+
 
  handleTitle = (text) => {
     this.setState({ title: text })
@@ -42,6 +46,13 @@ handleNumPartecipanti = (text) => {
   render() {
     return (
             <ScrollView style={styles.inputContainer}>
+              <TouchableOpacity
+              style={styles.button}
+              onPress = {() => alert(this.state.dataScelta)}>
+                <Text style = {styles.text}> Vedi DATA scelta </Text>
+              </TouchableOpacity>
+
+
                 <TextInput 
                     style={styles.input}
                     placeholder={'Nome'}
@@ -57,15 +68,6 @@ handleNumPartecipanti = (text) => {
                     underlineColorAndroid='transparent'
                     value = {this.state.description}
                     onChangeText = {this.handleDescription}
-                />
-
-                <TextInput 
-                    style={styles.input}
-                    placeholder={'Luogo'}
-                    placeholderTextColor={'grey'}
-                    underlineColorAndroid='transparent' 
-                    value = {this.state.location}
-                    onChangeText = {this.handleLocation}
                 />
               
 
@@ -87,23 +89,20 @@ handleNumPartecipanti = (text) => {
                     onChangeText = {this.handleNumPartecipanti}
                 />     
 
-              <TouchableOpacity
-                style={styles.button}
-                onPress = {() => this.props.navigation.replace("Date Picker")}>
-                <Text style = {styles.text}> Scegli la Data </Text>
-              </TouchableOpacity>
-
  
              <TouchableOpacity
+             disabled={(this.state.title == '' || this.state.description == '' || this.state.organizzatore == ''
+             || this.state.numPartecipanti == '' )}
               style={styles.button}
               onPress = {() => 
                 this.props.navigation.navigate('PostEvento',{
                   //emailCreatore: this.state.emailCreatore,
                   title: this.state.title,
                   description: this.state.description,
-                  date: this.props.route.params.dataSelezionata.date,
-                  latitude: "43.12345",
-                  longitude: "12345",
+                 
+                  nome: this.state.indirizzo,
+                  latitude: this.state.result.latitude,
+                  longitude: this.state.result.longitude,
                   topic: "5",
                   organizzatore: this.state.organizzatore,
                   numPartecipanti: this.state.numPartecipanti

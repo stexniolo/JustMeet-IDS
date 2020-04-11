@@ -17,6 +17,9 @@ public class Location {
 	private int id;
 	
 	@Column
+	private String nome;
+	
+	@Column
 	private double latitudine;
 	
 	@Column
@@ -26,7 +29,8 @@ public class Location {
 		
 	}
 	
-	public Location(double latitudine, double longitudine) {
+	public Location(String nome,double latitudine, double longitudine) {
+		this.nome = nome;
 		this.latitudine = latitudine;
 		this.longitudine = longitudine;
 	}
@@ -48,8 +52,12 @@ public class Location {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public double getLatitudine() {

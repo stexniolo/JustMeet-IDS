@@ -2,13 +2,12 @@ package it.unicam.cs.ids.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,22 +26,14 @@ public class SchedulerController {
 	@Autowired
 	private EventRepository eventRepository;
 	
-	
+	@DeleteMapping("/events")
 	 @Scheduled(fixedRate = 600000) //10 minuti
 	    public void checkDatabase() {
-		 	Scheduler now = new Scheduler();
-		 	scheduler.save(now);
-		 	
-	        List<Event> eventi = new ArrayList<Event>();
 	        
-	        eventi.addAll(eventRepository.findAll());
+	        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	        String todayAsString = df.format(Calendar.getInstance().getTime());
 	        
-	        String pattern = "dd/MM/yyyy";
-	        DateFormat df = new SimpleDateFormat(pattern);
-	        Date today = Calendar.getInstance().getTime();
-	        String todayAsString = df.format(today);
-	        
-	        for(Event e : eventi) {
+	        for(Event e : eventRepository.findAll()) {
 	        	if(e.before(todayAsString))
 	        		eventRepository.delete(e);
 	        }
@@ -54,7 +45,7 @@ public class SchedulerController {
 	    }
 	 
 	  @GetMapping("/schedulers/{id}")
-	  public Scheduler findLocation(@PathVariable String id) {
+	  public Scheduler findScheduler(@PathVariable String id) {
 		  return scheduler.findById(Integer.parseInt(id));
 	  }
 }

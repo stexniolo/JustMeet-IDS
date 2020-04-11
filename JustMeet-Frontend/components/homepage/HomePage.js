@@ -31,7 +31,7 @@ export default class HomePage extends React.Component {
         </View>
 
 
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profilo Utente',{email: this.state.email, })}>
+      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Profilo Utente',{email: this.state.email, })}>
           <Text style = {styles.text}> Il mio profilo </Text>
       </TouchableOpacity>
 

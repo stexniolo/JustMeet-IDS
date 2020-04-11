@@ -36,7 +36,9 @@ public class LocationController {
 	  @PostMapping("/locations")
 	    public void create(@RequestBody Map<String, String> body){	
 		  	locationRepository.save(
-		  			new Location(Double.parseDouble(body.get("latitude")),
+		  			new Location(
+		  						 body.get("nome"),
+		  						 Double.parseDouble(body.get("latitude")),
 		  						 Double.parseDouble(body.get("longitude")))
 		  		);
 	        

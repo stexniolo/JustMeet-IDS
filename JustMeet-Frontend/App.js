@@ -56,7 +56,7 @@ function App() {
       navigationOptions = {{
         headerTransparent: true
       }}
-      initialRouteName="Benvenuto">
+      initialRouteName="Scegli Data">
         <Stack.Screen name="Scegli Data" component={MyDatePicker} />
         <Stack.Screen name="Lista User [Admin]" component={ListaUser} />
         <Stack.Screen name="Lista Eventi [Admin]" component={ListaEventi} />

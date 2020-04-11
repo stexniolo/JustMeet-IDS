@@ -1,6 +1,9 @@
 import React from "react";
 import {StyleSheet,View, Text} from "react-native"; 
 import MapView from 'react-native-maps';
+import * as Permissions from 'expo-permissions';
+import * as Location from 'expo-location';
+
 
 export default class GoogleMaps extends React.Component {
 
@@ -8,12 +11,37 @@ export default class GoogleMaps extends React.Component {
   super(props);
   this.state = {
     loading: true,
-    dataSource:[]
+    dataSource:[],
+    errorMessage: '',
+    locationX: 0,
+    locationY: 0
     };
   }
-  
+
+  _getLocation = async() => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if(status !== 'granted'){
+      console.log("Permission not granted");
+    
+
+    this.setState({
+      errorMessage: "PERMISSION NOT GRANTED"
+    })
+  }
+
+  const userLocation = await Location.getCurrentPositionAsync();
+
+  this.setState({
+    locationX: userLocation.coords.latitude
+  })
+
+  this.setState({
+    locationY: userLocation.coords.longitude
+  })
+}
   componentDidMount(){
-  fetch("http://192.168.1.8:8080/events")
+  this._getLocation();
+  fetch("http://192.168.1.9:8080/events")
   .then(response => response.json())
   .then((responseJson)=> {
     this.setState({
@@ -21,40 +49,34 @@ export default class GoogleMaps extends React.Component {
     dataSource: responseJson
     })
   })
-  .catch(error=>console.log(error)) //to catch the errors if any
   }
   
   
   render(){
       return(
 
-       
-          
-    <View style={styles.container}>
-    
-        
-    
+    <View style={styles.container}>        
     <MapView style={styles.map}
+        showsUserLocation= {true}
         region={{
-            latitude: 43.1023,
-            longitude: 13.2313,
-            latitudeDelta: 0.9,
-            longitudeDelta: 0.9
+            latitude: this.state.locationX,
+            longitude: this.state.locationY,
+            latitudeDelta: 0.3,
+            longitudeDelta: 0.3
         }}>
 
     {this.state.dataSource.map(event => 
         <MapView.Marker coordinate={{
           latitude: event.location.latitudine,
           longitude: event.location.longitudine,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1
+          latitudeDelta: 0.9,
+          longitudeDelta: 0.9
         }}
         title = {event.title}
         description = {event.description}/>
     )}
     </MapView> 
     </View>
-    
     );
   }
   
@@ -77,4 +99,5 @@ export default class GoogleMaps extends React.Component {
         bottom:0,
         right:0
     }
-  });
+  }
+  );

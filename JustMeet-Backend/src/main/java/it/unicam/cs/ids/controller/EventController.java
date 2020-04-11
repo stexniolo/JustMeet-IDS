@@ -44,7 +44,7 @@ public class EventController {
         String data = body.get("date");
      	String latitude = body.get("latitude");
         String longitude = body.get("longitude");
-        Location location = new Location(Double.parseDouble(latitude),Double.parseDouble(longitude));
+        Location location = new Location(body.get("nome"),Double.parseDouble(latitude),Double.parseDouble(longitude));
         Topic topic = new Topic(Integer.parseInt(body.get("topic")));
         String organizzatore = body.get("organizzatore");
         String numPartecipanti = body.get("numPartecipanti");
@@ -87,7 +87,7 @@ public class EventController {
 	        String data = body.get("date");
 	     	String latitude = body.get("latitude");
 	        String longitude = body.get("longitude");
-	        Location location = new Location(Double.parseDouble(latitude),Double.parseDouble(longitude));
+	        Location location = new Location(body.get("nome"),Double.parseDouble(latitude),Double.parseDouble(longitude));
 	        Topic topic = new Topic(Integer.parseInt(body.get("topic")));
 	        String organizzatore = body.get("organizzatore");
 	        String numPartecipanti = body.get("numPartecipanti");

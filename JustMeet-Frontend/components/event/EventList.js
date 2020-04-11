@@ -25,7 +25,7 @@ export default class EventList extends React.Component {
     };
   }
   componentDidMount(){
-  fetch("http://192.168.1.8:8080/events")
+  fetch("http://192.168.1.9:8080/events")
   .then(response => response.json())
   .then((responseJson)=> {
     this.setState({
@@ -71,7 +71,7 @@ export default class EventList extends React.Component {
      <View style={{ flex: 1}}>
          <TouchableOpacity style={styles.buttonPartecipa}
                             onPress = {() => Alert.alert("Info Evento",
-                                              "Dove: "+data.item.location.latitudine+"\n\n"+
+                                              "Dove: "+data.item.location.nome+"\n\n"+
                                               "Quando: "+data.item.date+"\n\n"+
                                               "Orario: "+data.item.orario+"\n\n"+
                                               "Partecipanti: "+data.item.participants+"\n\n"+

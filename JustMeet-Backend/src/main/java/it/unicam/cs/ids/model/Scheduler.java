@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.model;
 
-import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,39 +16,42 @@ import javax.persistence.Table;
 public class Scheduler {
 	
 	@Id
+	@Column
 	private int id;
 	
 	@Column
-	private Date ultimoScehduling;
+	private String ultimoScehduling;
 	
 	@Column
-	private Date orarioAttuale;
+	private String orarioAttuale;
 
 	
 	public Scheduler() {	
+	     DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	     String todayAsString = df.format(Calendar.getInstance().getTime());
 		if(this.orarioAttuale == null)
-			this.ultimoScehduling = new Date();
+			this.ultimoScehduling = todayAsString;
 		this.ultimoScehduling = this.orarioAttuale;
-		this.orarioAttuale = new Date();
+		this.orarioAttuale = todayAsString;
 	}
 
 
-	public Date getUltimoScehduling() {
+	public String getUltimoScehduling() {
 		return ultimoScehduling;
 	}
 
 
-	public void setUltimoScehduling(Date ultimoScehduling) {
+	public void setUltimoScehduling(String ultimoScehduling) {
 		this.ultimoScehduling = ultimoScehduling;
 	}
 
 
-	public Date getOrarioAttuale() {
+	public String getOrarioAttuale() {
 		return orarioAttuale;
 	}
 
 
-	public void setOrarioAttuale(Date orarioAttuale) {
+	public void setOrarioAttuale(String orarioAttuale) {
 		this.orarioAttuale = orarioAttuale;
 	}
 	

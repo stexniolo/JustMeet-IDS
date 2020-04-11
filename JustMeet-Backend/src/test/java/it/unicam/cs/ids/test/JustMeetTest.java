@@ -102,7 +102,7 @@ class JustMeetTest {
 	public void showParticipantEventsTest(){
 		
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		stefano.getPartecipazioneEventi().add(evento);
@@ -120,10 +120,10 @@ class JustMeetTest {
 	@Test
 	public void showCreatedEventTest() {
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento1 = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
-		Location location2 = new Location(43.54321,13.54321);
+		Location location2 = new Location("Recanati",43.54321,13.54321);
 		Topic topic2 = new Topic(5);
 		Event evento2 = new Event("Capodanno","è una cena","21 Marzo 21.00",location2,topic2,"Org",20);
 		
@@ -147,7 +147,7 @@ class JustMeetTest {
 	@Test
 	public void addParticipantEventTest() {
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		
@@ -164,7 +164,7 @@ class JustMeetTest {
 	@Test
 	public void addParticipantAlreadyExistTest() {
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		eventRepository.save(evento);
@@ -182,7 +182,7 @@ class JustMeetTest {
 	@Test
 	public void addCreatedEventTest() {
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		eventRepository.save(evento);
@@ -215,7 +215,7 @@ class JustMeetTest {
 	@Test
 	public void deleteCreatedEventTest() {
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		stefano.getEventiCreati().add(evento);
@@ -233,7 +233,7 @@ class JustMeetTest {
 	@Test
 	public void deleteParticipantEventTest() {
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		stefano.getPartecipazioneEventi().add(evento);
@@ -260,12 +260,12 @@ class JustMeetTest {
 	
 	@Test
 	public void eventIndexTest() {
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		
 		Topic topic = new Topic(5);
 		Event evento1 = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		
-		Location location2 = new Location(43.54321,13.54321);
+		Location location2 = new Location("Recanati",43.54321,13.54321);
 		Topic topic2 = new Topic(5);
 		Event evento2 = new Event("Capodanno","è una cena","21 Marzo 21.00",location2,topic2,"Org",20);
 		List<Event> risultatoAtteso = new ArrayList<Event>();
@@ -284,11 +284,11 @@ class JustMeetTest {
 	
 	@Test
 	public void eventShowTest() {
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento1 = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);;
 		
-		Location location2 = new Location(43.54321,13.54321);
+		Location location2 = new Location("Recanati",43.54321,13.54321);
 		Topic topic2 = new Topic(5);
 		Event evento2 = new Event("Capodanno","è una cena","21 Marzo 21.00",location2,topic2,"Org",20);
 		eventRepository.save(evento1);
@@ -322,7 +322,7 @@ class JustMeetTest {
 	
 	@Test
 	public void showParticipantOfEventTest() {
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento1 = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
@@ -350,7 +350,7 @@ class JustMeetTest {
 	
 	@Test
 	public void addParticipantOfEventTest() {
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento1 = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
@@ -375,7 +375,7 @@ class JustMeetTest {
 	
 	@Test
 	public void deleteParticipantOfEventTest() {
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento1 = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		User stefano = new User("Stefano", "Perniola","stefano.perniola0@gmail.com", "https://lh3.googleusercontent.com/a-/AOh14GgnhU9UFv2ZN6eFbYEmZQ9B-7KZkIxY1dCzvOfa2w");
@@ -399,7 +399,7 @@ class JustMeetTest {
 	
 	@Test
 	public void updateEventTest() {
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento1 = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		eventRepository.save(evento1);
@@ -426,7 +426,7 @@ class JustMeetTest {
 	
 	@Test
 	public void deleteEventTest() {
-		Location location = new Location(43.12345,13.12345);
+		Location location = new Location("Recanati",43.12345,13.12345);
 		Topic topic = new Topic(5);
 		Event evento1 = new Event("Capodanno","è una cena","21 Marzo 21.00",location,topic,"Org",20);
 		eventRepository.save(evento1);
@@ -440,8 +440,8 @@ class JustMeetTest {
 	
 	@Test
 	public void locationIndexTest() {
-		Location location1 = new Location(43.12345,13.12345);
-		Location location2 = new Location(43.54321,13.54321);
+		Location location1 = new Location("Recanati",43.12345,13.12345);
+		Location location2 = new Location("Recanati",43.54321,13.54321);
 		
 		locationRepository.save(location1);
 		locationRepository.save(location2);
@@ -457,7 +457,7 @@ class JustMeetTest {
 	
 	@Test
 	public void findLocationTest() {
-		Location location1 = new Location(43.12345,13.12345);
+		Location location1 = new Location("Recanati",43.12345,13.12345);
 		locationRepository.save(location1);
 		
 		String id = Integer.toString(location1.getId());
@@ -482,7 +482,7 @@ class JustMeetTest {
 	
 	@Test
 	public void updateLocationTest() {
-		Location location1 = new Location(43.12345,13.12345);
+		Location location1 = new Location("Recanati",43.12345,13.12345);
 		locationRepository.save(location1);
 		
 		Map<String,String> json = new HashMap<String,String>();
@@ -497,7 +497,7 @@ class JustMeetTest {
 	
 	@Test
 	public void deleteLocationTest() {
-		Location location1 = new Location(43.12345,13.12345);
+		Location location1 = new Location("Recanati",43.12345,13.12345);
 		locationRepository.save(location1);
 		
 		locationController.delete(Integer.toString(location1.getId()));
