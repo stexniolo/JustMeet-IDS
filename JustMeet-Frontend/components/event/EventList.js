@@ -73,7 +73,6 @@ export default class EventList extends React.Component {
                             onPress = {() => Alert.alert("Info Evento",
                                               "Dove: "+data.item.location.nome+"\n\n"+
                                               "Quando: "+data.item.date+"\n\n"+
-                                              "Orario: "+data.item.orario+"\n\n"+
                                               "Partecipanti: "+data.item.participants+"\n\n"+
                                               "Organizzatore: "+data.item.organizzatore+"\n\n"+
                                               "Categoria: "+data.item.topic)}>

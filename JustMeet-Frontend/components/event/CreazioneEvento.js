@@ -1,20 +1,19 @@
 import React from 'react'
 import { View, Text,Button,StyleSheet,Dimensions,TextInput,TouchableOpacity, Alert,ScrollView} from 'react-native';
-import * as Location from 'expo-location';
-import * as Permissions from 'expo-permissions';
+import RNPickerSelect from 'react-native-picker-select';
 
 
 export default class CreazioneEvento extends React.Component {
   constructor(props){
     super(props);
     this.state = { 
-      //emailCreatore: this.props.route.params.email,
+      emailCreatore: this.props.route.params.email,
       dataScelta:this.props.route.params.giorno+"/"+this.props.route.params.mese+"/"+this.props.route.params.anno+" "+this.props.route.params.ore+":"+this.props.route.params.minuti,
       title: '',
       description: '',
       organizzatore: '',
       numPartecipanti: '',
-
+      topic: ''
     };
   }
 
@@ -46,12 +45,16 @@ handleNumPartecipanti = (text) => {
   render() {
     return (
             <ScrollView style={styles.inputContainer}>
-              <TouchableOpacity
-              style={styles.button}
-              onPress = {() => alert(this.state.dataScelta)}>
-                <Text style = {styles.text}> Vedi DATA scelta </Text>
-              </TouchableOpacity>
 
+<TouchableOpacity
+              style={styles.button}
+              onPress = {() => alert("DATA : "+this.state.dataScelta+"\n"+
+                                      "LOCATION: "+this.props.route.params.nome+"\n"+
+                                      "latitude: "+this.props.route.params.latitude+"\n"+
+                                      "longitude: "+this.props.route.params.longitude)}
+             >
+                <Text style = {styles.text}> Vedi cose </Text>
+              </TouchableOpacity>
 
                 <TextInput 
                     style={styles.input}
@@ -89,21 +92,36 @@ handleNumPartecipanti = (text) => {
                     onChangeText = {this.handleNumPartecipanti}
                 />     
 
+          <Text style={styles.text}>
+            Scegli Categoria
+          </Text>
+                  <RNPickerSelect
+                    style={styles.form}
+                    onValueChange={(value) => this.setState({topic: value})}
+                    items={[
+                        { label: 'Studio', value: '1' },
+                        { label: 'Amici', value: '2' },
+                        { label: 'Sport', value: '3' },
+                        { label: 'Party', value: '4' },
+                        { label: 'Generale', value: '5' },
+                          ]}
+                      />
+
  
              <TouchableOpacity
              disabled={(this.state.title == '' || this.state.description == '' || this.state.organizzatore == ''
-             || this.state.numPartecipanti == '' )}
+             || this.state.numPartecipanti == '' || this.state.topic == '')}
               style={styles.button}
               onPress = {() => 
                 this.props.navigation.navigate('PostEvento',{
-                  //emailCreatore: this.state.emailCreatore,
+                  emailCreatore: this.state.emailCreatore,
                   title: this.state.title,
                   description: this.state.description,
-                 
-                  nome: this.state.indirizzo,
-                  latitude: this.state.result.latitude,
-                  longitude: this.state.result.longitude,
-                  topic: "5",
+                  date: this.state.dataScelta,
+                  nome: this.props.route.params.nome,
+                  latitude: this.props.route.params.latitude,
+                  longitude: this.props.route.params.longitude,
+                  topic: this.state.topic,
                   organizzatore: this.state.organizzatore,
                   numPartecipanti: this.state.numPartecipanti
                 })
@@ -155,5 +173,9 @@ text: {
   textAlign: 'center',
   fontSize: 20,
   fontWeight: 'bold'
+},
+form: {
+  marginTop: 20,
+  marginBottom: 20
 }
 })

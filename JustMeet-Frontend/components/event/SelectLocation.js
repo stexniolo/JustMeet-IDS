@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, Text, Button, Platform, StyleSheet, View,TextInput ,Dimensions} from 'react-native';
+import { TouchableOpacity, Text, Button, Platform, StyleSheet, View,TextInput ,Dimensions} from 'react-native';
 import Touchable from 'react-native-platform-touchable';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
@@ -12,7 +12,8 @@ export default class ScegliLocation extends React.Component {
     this.state = { 
       indirizzo: '',
       result: '',
-      inProgress: false
+      inProgress: false,
+      canGo: false
     };
   }
   
@@ -24,7 +25,7 @@ export default class ScegliLocation extends React.Component {
     title: 'Geocoding',
   }
 
-  _attemptGeocodeAsync = async () => {
+  _attemptGeocodeAsync = async (text) => {
     this.setState({ inProgress: true, error: null });
     try {
       let result = await Location.geocodeAsync(this.state.indirizzo);
@@ -33,27 +34,56 @@ export default class ScegliLocation extends React.Component {
       this.setState({ error: e.message });
     } finally {
       this.setState({ inProgress: false });
+      if(this.state.result.length > 0){
+        this.setState({canGo: true})
+        alert("Location trovata, puoi proseguire")
+    }
+    else{
+      alert("Location non trovata, controlla l'input")
     }
   }
+}
+
+  handleIndirizzo = (text) => {
+    this.setState({ indirizzo: text })
+ }
 
 
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerText}>Scegli una location</Text>
-        </View>
 
-      
+                 <TextInput 
+                    style={styles.input}
+                    placeholder={'Nome Luogo'}
+                    placeholderTextColor={'grey'}
+                    underlineColorAndroid='transparent'
+                    value = {this.state.indirizzo}
+                    onChangeText = {this.handleIndirizzo}
+                   />
+
+            
 
         <View style={styles.separator} />
 
         <View style={styles.actionContainer}>
           <Button
             onPress={this._attemptGeocodeAsync}
-            title="Avanti"
+            title="Verifica"
             style={styles.button}
           />
+
+          <TouchableOpacity
+             disabled={!this.state.canGo}
+              onPress = {() => this.props.navigation.navigate("Scegli Data",{
+                email: this.props.route.params.email,
+                nomeLuogo: this.state.indirizzo,
+                latitude: this.state.result[0].latitude,
+                longitude: this.state.result[0].longitude 
+              })} >
+                <Text> Prosegui </Text>
+              </TouchableOpacity>
+
          
         </View>
       </View>
@@ -124,6 +154,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     color: 'black',
     marginHorizontal: 25,
-    marginBottom: 25
+    marginBottom: 25,
+    marginTop: 100
 }
 });

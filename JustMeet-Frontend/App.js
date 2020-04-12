@@ -28,6 +28,7 @@ import EliminaEvento from '././components/admin/EliminaEvento.js';
 import ListaEventi from '././components/admin/ListaEventi.js';
 import ListaUser from '././components/admin/ListaUser.js';
 import MyDatePicker from './components/event/MyDatePicker.js';
+import SelectLocation from '././components/event/SelectLocation.js';
 
 /*
 const Stack = createBottomStackNavigator();
@@ -56,7 +57,8 @@ function App() {
       navigationOptions = {{
         headerTransparent: true
       }}
-      initialRouteName="Scegli Data">
+      initialRouteName="Benvenuto">
+        <Stack.Screen name= "Scegli Luogo" component={SelectLocation}/> 
         <Stack.Screen name="Scegli Data" component={MyDatePicker} />
         <Stack.Screen name="Lista User [Admin]" component={ListaUser} />
         <Stack.Screen name="Lista Eventi [Admin]" component={ListaEventi} />

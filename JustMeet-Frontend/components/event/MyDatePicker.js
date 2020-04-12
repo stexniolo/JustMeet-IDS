@@ -138,6 +138,10 @@ export default class MyDatePicker extends React.Component {
           disabled={(this.state.giorno == '' || this.state.mese == '' || this.state.anno == ''
                   || this.state.ore == '' || this.state.minuti == '')}
                            onPress={() => this.props.navigation.navigate("Crea un evento",{
+                             email: this.props.route.params.email,
+                             nome: this.props.route.params.nomeLuogo,
+                             latitude: this.props.route.params.latitude,
+                             longitude: this.props.route.params.longitude,
                              anno: this.state.anno,
                              giorno: this.state.giorno,
                              mese: this.state.mese,
