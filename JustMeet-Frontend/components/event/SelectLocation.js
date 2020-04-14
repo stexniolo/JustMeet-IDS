@@ -51,41 +51,35 @@ export default class ScegliLocation extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View >
 
-                 <TextInput 
-                    style={styles.input}
-                    placeholder={'Nome Luogo'}
-                    placeholderTextColor={'grey'}
-                    underlineColorAndroid='transparent'
-                    value = {this.state.indirizzo}
-                    onChangeText = {this.handleIndirizzo}
-                   />
-
+          <TextInput 
+            style={styles.input}
+            placeholder={'Nome Luogo'}
+            placeholderTextColor={'grey'}
+            underlineColorAndroid='transparent'
+            value = {this.state.indirizzo}
+            onChangeText = {this.handleIndirizzo}
+            />
             
-
-        <View style={styles.separator} />
-
-        <View style={styles.actionContainer}>
-          <Button
+          <TouchableOpacity
+            style={styles.buttonMio}
             onPress={this._attemptGeocodeAsync}
-            title="Verifica"
-            style={styles.button}
-          />
+            title="Verifica">
+            <Text>Verifica</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity
-             disabled={!this.state.canGo}
-              onPress = {() => this.props.navigation.navigate("Scegli Data",{
+            style={styles.buttonMio}
+            disabled={!this.state.canGo}
+            onPress = {() => this.props.navigation.navigate("Scegli Data",{
                 email: this.props.route.params.email,
                 nomeLuogo: this.state.indirizzo,
                 latitude: this.state.result[0].latitude,
                 longitude: this.state.result[0].longitude 
-              })} >
-                <Text> Prosegui </Text>
-              </TouchableOpacity>
-
-         
-        </View>
+            })} >
+            <Text style={styles.text}> Prosegui </Text>
+          </TouchableOpacity>
       </View>
     );
   }
@@ -96,55 +90,6 @@ export default class ScegliLocation extends React.Component {
 const { width: WIDTH } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#eee',
-    marginTop: 10,
-    marginBottom: 5,
-  },
-  headerText: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginBottom: 5,
-  },
-  headerContainer: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#eee',
-    marginHorizontal: 20,
-    marginBottom: 0,
-    marginTop: 20,
-  },
-  exampleText: {
-    fontSize: 15,
-    color: '#ccc',
-    marginVertical: 10,
-  },
-  selectedExampleText: {
-    color: 'black',
-  },
-  resultText: {
-    padding: 20,
-  },
-  actionContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: 10,
-  },
-  errorResultText: {
-    padding: 20,
-    color: 'red',
-  },
-  button: {
-    ...Platform.select({
-      android: {
-        marginBottom: 10,
-      },
-    }),
-  },
   input: {
     width: WIDTH - 55,
     height: 45,
@@ -156,5 +101,20 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     marginBottom: 25,
     marginTop: 100
-}
+  },
+  buttonMio: {
+    alignSelf:'center',
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 20,
+    marginTop: 20,
+    width: 300,
+    borderRadius:50
+  },
+  text: {
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold'
+  }
 });

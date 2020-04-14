@@ -22,7 +22,7 @@ export default class ProfiloUtente extends React.Component {
       };
     }
     componentDidMount(){
-    fetch("http://192.168.1.8:8080/users/"+this.props.route.params.email)
+    fetch("http://192.168.1.9:8080/users/"+this.props.route.params.email)
     .then(response => response.json())
     .then((responseJson)=> {
       this.setState({
@@ -53,6 +53,13 @@ export default class ProfiloUtente extends React.Component {
         <TouchableOpacity style={styles.button}
                         onPress={() => this.props.navigation.navigate('Email')}>
           <Text style = {styles.text}> Segnala un problema </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button}
+                        onPress={() => this.props.navigation.navigate('Elimina Utente',{
+                          email: this.state.dataSource.email
+                        })}>
+          <Text style = {styles.text}> Elimina il mio account </Text>
       </TouchableOpacity>
 
         <View style={{ flexDirection: "row" }}>
@@ -124,7 +131,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 20,
-    marginTop: 20
+    marginTop: 20,
+    borderRadius:50
   },
   button2:{
     alignSelf: 'stretch',

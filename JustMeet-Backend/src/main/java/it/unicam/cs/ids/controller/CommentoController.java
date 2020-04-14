@@ -46,7 +46,7 @@ public class CommentoController {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();   
 		
-		Commento nuovoCommento = new Commento(bodyCommento,user,dtf.format(now));
+		Commento nuovoCommento = new Commento(bodyCommento,user,dtf.format(now),Integer.parseInt(body.get("idEvento")));
 		this.commentoRepository.save(nuovoCommento);
 	}
 	

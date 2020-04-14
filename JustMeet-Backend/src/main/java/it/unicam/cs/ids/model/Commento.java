@@ -3,6 +3,8 @@ package it.unicam.cs.ids.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,8 +15,12 @@ import javax.persistence.Table;
 public class Commento {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
 	private int id;
+	
+	@Column
+	private int idEvento;
 	
 	@Column
 	private String body;
@@ -30,11 +36,19 @@ public class Commento {
 		
 	}
 	
-	public Commento(String body,User mittente,String orario) {
+	public Commento(String body,User mittente,String orario,int idEvento) {
 		this.body = body;
 		this.mittente = mittente;
 		this.orarioPubblicazione = orario;
+		this.idEvento = idEvento;
 	}
+	
+	
+
+	public int getIdEvento() {
+		return idEvento;
+	}
+
 
 	public String getBody() {
 		return body;

@@ -12,21 +12,54 @@ Text,
 TouchableOpacity
 } from "react-native";
 import {Card,Icon} from 'react-native-elements' 
+import * as Permissions from 'expo-permissions';
+import * as Location from 'expo-location';
 
-export default class EventList extends React.Component {
+export default class NearEventsList extends React.Component {
 
   constructor(props) {
   super(props);
   this.state = {
-    email: this.props.route.params.email,
     photoPath: "",
     loading: true,
     dataSource:[],
-    participantName : this.props.route.params.fullName
+    participantName : this.props.route.params.fullName,
+    
+    //userPermissions
+    errorMessage: '',
+    locationX: 0, //latitudine
+    locationY: 0   //longitudine
     };
   }
+
+
+ 
+  
+    _getLocation = async() => {
+      const { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if(status !== 'granted'){
+        console.log("Permission not granted");
+      
+  
+      this.setState({
+        errorMessage: "PERMISSION NOT GRANTED"
+      })
+    }
+  
+    const userLocation = await Location.getCurrentPositionAsync();
+  
+    this.setState({
+      locationX: userLocation.coords.latitude
+    })
+  
+    this.setState({
+      locationY: userLocation.coords.longitude
+    })
+  }
+
   componentDidMount(){
-  fetch("http://192.168.1.9:8080/events")
+  this._getLocation();
+  fetch("http://192.168.1.9:8080/events/locations/"+this.state.locationX+"/"+this.state.locationY)
   .then(response => response.json())
   .then((responseJson)=> {
     this.setState({
@@ -71,17 +104,12 @@ export default class EventList extends React.Component {
      <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
      <View style={{ flex: 1}}>
          <TouchableOpacity style={styles.buttonPartecipa}
-                            onPress = {() => this.props.navigation.navigate("Info Evento",{
-                              email: this.state.email,
-                              id: data.item.id,
-                              nomeLocation: data.item.location.nome,
-                              date: data.item.date,
-                              participants: data.item.participants,
-                              organizzatore: data.item.organizzatore,
-                              topic: data.item.topic,
-                              adesioniAttuali: data.item.adesioniAttuali,
-                              commenti: data.item.commento
-                            })}>
+                            onPress = {() => Alert.alert("Info Evento",
+                                              "Dove: "+data.item.location.nome+"\n\n"+
+                                              "Quando: "+data.item.date+"\n\n"+
+                                              "Partecipanti: "+data.item.participants+"\n\n"+
+                                              "Organizzatore: "+data.item.organizzatore+"\n\n"+
+                                              "Categoria: "+data.item.topic)}>
               <Text style={styles.text}>Info</Text>
          </TouchableOpacity>
      </View>
@@ -100,7 +128,8 @@ export default class EventList extends React.Component {
     return(
     <View>
         <Text style = {styles.instructions}>
-          Al momento non ci sono eventi pubblicati.
+          Al momento non ci sono eventi disponibili nel raggio di 100 chilometri.{"\n"}{"\n"}{"\n"}
+          La tua posizione:{"\n"} [latitudine:{this.state.locationX}, longitudine:{this.state.locationY}]
         </Text>
     </View>
     )}

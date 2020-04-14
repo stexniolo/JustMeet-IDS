@@ -1,5 +1,7 @@
 package it.unicam.cs.ids.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.unicam.cs.ids.model.*;
+import it.unicam.cs.ids.repository.CommentoRepository;
 import it.unicam.cs.ids.repository.EventRepository;
 import it.unicam.cs.ids.repository.UserRepository;
 
@@ -27,6 +30,9 @@ public class UserController {
 	
 	@Autowired
 	private EventRepository eventRepository;
+	
+	@Autowired
+	private CommentoRepository commentoRepository;
 	  
 	 @GetMapping("/users")
 	    public List<User> index(){
@@ -158,4 +164,38 @@ public class UserController {
 	        userRepository.deleteByEmail(email);
 	        return true;
 	    }
+	  
+	  
+	  @GetMapping("/users/{email}/comments")
+	  public Set<Commento> showMyComments(@PathVariable String email){
+		  return this.userRepository.findByEmail(email).getCommentiPubblicati();
+	  }
+	  
+	  
+	  @PostMapping("/users/{email}/comments")
+	  public void createCommento(@PathVariable String email,@RequestBody Map<String,String> commento) {
+		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
+		  LocalDateTime now = LocalDateTime.now();
+		  Commento nuovoCommento = new Commento(
+				  commento.get("body"),
+				  this.userRepository.findByEmail(commento.get("email")),
+				  dtf.format(now),
+				  Integer.parseInt(commento.get("idEvento")));   
+		
+		  this.commentoRepository.save(nuovoCommento);
+		  
+		User user = this.userRepository.findByEmail(email);
+		user.getCommentiPubblicati().add(nuovoCommento);
+		this.userRepository.save(user);
+	  }
+	  
+	  @PutMapping("/users/{email}/comments/{id}")
+	  public void updateCommento(@PathVariable String email,@PathVariable String id,@RequestBody Map<String,String> commento) {
+		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
+		  LocalDateTime now = LocalDateTime.now();
+		  Commento c = this.commentoRepository.findById(Integer.parseInt(id));
+		  c.setBody(commento.get("body"));
+		  c.setOrarioPubblicazione(dtf.format(now));
+		  this.commentoRepository.save(c);
+	  }
 }

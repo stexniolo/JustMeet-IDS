@@ -29,6 +29,16 @@ import ListaEventi from '././components/admin/ListaEventi.js';
 import ListaUser from '././components/admin/ListaUser.js';
 import MyDatePicker from './components/event/MyDatePicker.js';
 import SelectLocation from '././components/event/SelectLocation.js';
+import CercaEvento from '././components/event/CercaEvento.js';
+import TopicEventsList from '././components/event/TopicEventsList.js';
+import NearEventsList from '././components/event/NearEventsList.js';
+import InputTopicSearch from '././components/event/InputTopicSearch.js';
+import InfoEvento from '././components/event/InfoEvento.js';
+import SezioneCommenti from '././components/event/SezioneCommenti.js';
+import PubblicaCommento from '././components/event/PubblicaCommento.js';
+import ScriviCommento from '././components/event/ScriviCommento.js';
+import EliminaUtente from '././components/user/EliminaUtente.js';
+import EliminaDefinitivo from '././components/user/EliminaDefinitivo.js';
 
 /*
 const Stack = createBottomStackNavigator();
@@ -53,35 +63,41 @@ const Stack = createStackNavigator()
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-      navigationOptions = {{
-        headerTransparent: true
-      }}
-      initialRouteName="Benvenuto">
-        <Stack.Screen name= "Scegli Luogo" component={SelectLocation}/> 
-        <Stack.Screen name="Scegli Data" component={MyDatePicker} />
-        <Stack.Screen name="Lista User [Admin]" component={ListaUser} />
-        <Stack.Screen name="Lista Eventi [Admin]" component={ListaEventi} />
-        <Stack.Screen name="Elimina Utente [Admin]" component={DeleteUser} />
-        <Stack.Screen name="Elimina Evento [Admin]" component={EliminaEvento} />
-        <Stack.Screen name="Email" component={GmailSend} />
-        <Stack.Screen name="Google Maps" component={GoogleMaps} />
-        <Stack.Screen name="Annulla Partecipazione" component={AnnullaPartecipazione} />
-        <Stack.Screen name="Annulla Evento" component={AnnullaEvento} />
-        <Stack.Screen name="Modifica Evento" component={ModificaEvento} />
-        <Stack.Screen name="PutEvento" component={PutEvento} />
-        <Stack.Screen name="Eventi Creati" component={eventiCreati} />
-        <Stack.Screen name="Partecipazione a Eventi" component={partecipazioneEventi} />
-        <Stack.Screen name="Admin" component={AdminScreen} />
-        <Stack.Screen name="PostPartecipante" component={PostPartecipante} />
-        <Stack.Screen name="Profilo Utente" component={ProfiloUtente} />
-        <Stack.Screen name="PostEvento" component={PostEvento} />
-        <Stack.Screen name="Crea un evento" component={CreazioneEvento} />
-        <Stack.Screen name="LoginPage" component={LoginPage} />
-        <Stack.Screen name="Login" component={GoogleLogin} />
-        <Stack.Screen name="Benvenuto" component={Welcome} />
-        <Stack.Screen name="Home Page" component={HomePage} />
-        <Stack.Screen name="Eventi" component={EventList} />
+      <Stack.Navigator initialRouteName = "Benvenuto">
+        <Stack.Screen name = "Elimina Definitivo" component = {EliminaDefinitivo}/>
+        <Stack.Screen name = "Elimina Utente" component = {EliminaUtente}/>
+        <Stack.Screen name = "Scrivi Commento" component= {ScriviCommento}/>
+        <Stack.Screen name = "Pubblica Commento" component = {PubblicaCommento}/>
+        <Stack.Screen name = "Sezione Commenti" component= {SezioneCommenti}/>
+        <Stack.Screen name = "Info Evento" component = {InfoEvento}/>
+        <Stack.Screen name = "Input Topic" component= {InputTopicSearch}/>
+        <Stack.Screen name = "Lista Eventi Più Vicini" component = {NearEventsList}/>
+        <Stack.Screen name = "Lista Eventi [TOPIC]" component = {TopicEventsList}/>
+        <Stack.Screen name = "Cerca Evento" component = {CercaEvento}/>
+        <Stack.Screen name = "Scegli Luogo" component={SelectLocation}/> 
+        <Stack.Screen name = "Scegli Data" component={MyDatePicker} />
+        <Stack.Screen name = "Lista User [Admin]" component={ListaUser} />
+        <Stack.Screen name = "Lista Eventi [Admin]" component={ListaEventi} />
+        <Stack.Screen name = "Elimina Utente [Admin]" component={DeleteUser} />
+        <Stack.Screen name = "Elimina Evento [Admin]" component={EliminaEvento} />
+        <Stack.Screen name = "Email" component={GmailSend} />
+        <Stack.Screen name = "Google Maps" component={GoogleMaps} />
+        <Stack.Screen name = "Annulla Partecipazione" component={AnnullaPartecipazione} />
+        <Stack.Screen name = "Annulla Evento" component={AnnullaEvento} />
+        <Stack.Screen name = "Modifica Evento" component={ModificaEvento} />
+        <Stack.Screen name = "PutEvento" component={PutEvento} />
+        <Stack.Screen name = "Eventi Creati" component={eventiCreati} />
+        <Stack.Screen name = "Partecipazione a Eventi" component={partecipazioneEventi} />
+        <Stack.Screen name = "Admin" component={AdminScreen} />
+        <Stack.Screen name = "PostPartecipante" component={PostPartecipante} />
+        <Stack.Screen name = "Profilo Utente" component={ProfiloUtente} />
+        <Stack.Screen name = "PostEvento" component={PostEvento} />
+        <Stack.Screen name = "Crea un evento" component={CreazioneEvento} />
+        <Stack.Screen name = "LoginPage" component={LoginPage} />
+        <Stack.Screen name = "Login" component={GoogleLogin} />
+        <Stack.Screen name = "Benvenuto" component={Welcome} />
+        <Stack.Screen name = "Home Page" component={HomePage} />
+        <Stack.Screen name = "Eventi" component={EventList} />
       </Stack.Navigator>
     </NavigationContainer>
   );

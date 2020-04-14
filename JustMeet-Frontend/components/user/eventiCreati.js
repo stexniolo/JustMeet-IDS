@@ -23,7 +23,7 @@ export default class EventiCreati extends React.Component {
     };
   }
   componentDidMount(){
-  fetch("http://192.168.1.8:8080/users/"+this.props.route.params.email+"/createdEvent")
+  fetch("http://192.168.1.9:8080/users/"+this.props.route.params.email+"/createdEvent")
   .then(response => response.json())
   .then((responseJson)=> {
     this.setState({

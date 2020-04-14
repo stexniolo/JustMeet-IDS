@@ -47,6 +47,10 @@ public class User {
 	@OneToMany(fetch = FetchType.EAGER)
 	private Set<Event> partecipazioneEventi;
 	
+	@JoinColumn(name = "commentiPubblicati")
+	@OneToMany(fetch = FetchType.LAZY)
+	private Set<Commento> commentiPubblicati;
+	
 	
 	private String fullName;
 	
@@ -63,11 +67,20 @@ public class User {
 		this.photoUrl = photoUrl;
 		this.eventiCreati = new HashSet<Event>();
 		this.partecipazioneEventi = new HashSet<Event>();
+		this.commentiPubblicati = new HashSet<Commento>();
 		this.fullName = this.nome+" "+this.cognome;
 	}
 	
 	
 	
+	public Set<Commento> getCommentiPubblicati() {
+		return commentiPubblicati;
+	}
+
+	public void setCommentiPubblicati(Set<Commento> commentiPubblicati) {
+		this.commentiPubblicati = commentiPubblicati;
+	}
+
 	public String getFullName() {
 		return fullName;
 	}

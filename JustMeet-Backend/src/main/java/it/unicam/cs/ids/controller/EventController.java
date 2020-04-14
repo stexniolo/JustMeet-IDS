@@ -172,7 +172,7 @@ public class EventController {
 	  public List<Event> showByTopic(@PathVariable String id){
 		  List<Event> eventi = new ArrayList<Event>();
 		  for(Event e : this.eventRepository.findAll()) {
-			  if(e.getTopic().getId() == Integer.parseInt(id)) {
+			  if(e.getTopic().toString() == id) {
 				  eventi.add(e);
 			  }
 		  }
@@ -180,13 +180,13 @@ public class EventController {
 	  }
 	  
 	  
-	  @GetMapping("/events/locations/")
+	  @GetMapping("/events/locations/{latitude}/{longitude}")
 	  /**
 	   * Mostra tutti gli eventi distanti meno di 100km
 	   */
-	  public List<Event> showByLocation(@RequestBody Map<String,String> location){
-		  double latitudine = Double.parseDouble(location.get("latitudine"));
-		  double longitudine = Double.parseDouble(location.get("longitudine"));
+	  public List<Event> showByLocation(@PathVariable String latitude,@PathVariable String longitude){
+		  double latitudine = Double.parseDouble(latitude);
+		  double longitudine = Double.parseDouble(longitude);
 		  List<Event> eventi = new ArrayList<Event>();
 		  for(Event e : this.eventRepository.findAll()) { 
 			  if(e.getLocation().distance(latitudine, longitudine) < 100) {
@@ -202,14 +202,16 @@ public class EventController {
 	  }
 	  
 	  @PostMapping("/events/{id}/comments")
-	  public void addComment(@PathVariable String id, @RequestBody Map<String,String> commento) {
+	  public void addComment(@PathVariable String id,@RequestBody Map<String,String> commento) {
 		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
 		  LocalDateTime now = LocalDateTime.now();
 		  Commento nuovoCommento = new Commento(
 				  commento.get("body"),
 				  this.userRepository.findByEmail(commento.get("email")),
-				  dtf.format(now)  );   
-			
+				  dtf.format(now),
+				  Integer.parseInt(commento.get("idEvento")));   
+		
+		  this.commentoRepository.save(nuovoCommento);
 		  Event evento = this.eventRepository.findByid(Integer.parseInt(id));
 		  evento.getCommento().add(nuovoCommento);
 		  this.eventRepository.save(evento);

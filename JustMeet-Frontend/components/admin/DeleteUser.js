@@ -3,7 +3,7 @@ import { View, Text,Button,StyleSheet,Dimensions,TextInput,TouchableOpacity} fro
 
 export default class DeleteUser extends React.Component {
     componentDidMount(){
-        fetch('http://192.168.1.8:8080/users/'+this.props.route.params.email, {
+        fetch('http://192.168.1.9:8080/users/'+this.props.route.params.email, {
             method: 'DELETE',
             headers: {
               Accept: 'application/json',

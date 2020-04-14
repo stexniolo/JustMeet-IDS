@@ -22,7 +22,7 @@ export default class ListaEventi extends React.Component {
     };
   }
   componentDidMount(){
-  fetch("http://192.168.1.8:8080/events")
+  fetch("http://192.168.1.9:8080/events")
   .then(response => response.json())
   .then((responseJson)=> {
     this.setState({

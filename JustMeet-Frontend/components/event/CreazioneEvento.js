@@ -46,16 +46,6 @@ handleNumPartecipanti = (text) => {
     return (
             <ScrollView style={styles.inputContainer}>
 
-<TouchableOpacity
-              style={styles.button}
-              onPress = {() => alert("DATA : "+this.state.dataScelta+"\n"+
-                                      "LOCATION: "+this.props.route.params.nome+"\n"+
-                                      "latitude: "+this.props.route.params.latitude+"\n"+
-                                      "longitude: "+this.props.route.params.longitude)}
-             >
-                <Text style = {styles.text}> Vedi cose </Text>
-              </TouchableOpacity>
-
                 <TextInput 
                     style={styles.input}
                     placeholder={'Nome'}
@@ -128,6 +118,8 @@ handleNumPartecipanti = (text) => {
             } >
                 <Text style = {styles.text}> Pubblica </Text>
               </TouchableOpacity>
+
+              <Text style={styles.warning}>N.B. Potrai continuare solo se compili tutto</Text>
               
               </ScrollView>
               
@@ -177,5 +169,10 @@ text: {
 form: {
   marginTop: 20,
   marginBottom: 20
+},
+warning:{
+  fontSize: 15,
+  color: 'red',
+  textAlign: 'center',
 }
 })

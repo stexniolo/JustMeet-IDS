@@ -1,26 +1,25 @@
 import React from "react";
 import {
+Dimensions,
 StyleSheet,
 View,
 ActivityIndicator,
 FlatList,
 Text,
-TouchableOpacity,
-Dimensions,
-Card
 } from "react-native";
+import {Card,ListItem} from 'react-native-elements' 
 
-export default class ListaUser extends React.Component {
+export default class SezioneCommenti extends React.Component {
 
   constructor(props) {
   super(props);
   this.state = {
     loading: true,
-    dataSource:[]
+    dataSource:[],
     };
   }
   componentDidMount(){
-  fetch("http://192.168.1.9:8080/users")
+  fetch("http://192.168.1.9:8080/events/"+this.props.route.params.idEvento+"/comments")
   .then(response => response.json())
   .then((responseJson)=> {
     this.setState({
@@ -40,41 +39,16 @@ export default class ListaUser extends React.Component {
   />
   );
   }
-  renderItem=(data)=>
-
-  <Card
-  title={data.item.fullName}
-  image={data.item.photoUrl}
-  >
-  <Text style={{marginBottom: 10}}>
-    {data.item.nome}{"\n\n"}
-    {data.item.cognome}
-    {data.item.email}
-  </Text>
-  <View style={{ flexDirection: "row" }}>
-     <View style={{ flex: 1 }}>
-         <TouchableOpacity style={styles.buttonPartecipa }
-               onPress = {() => this.props.navigation.navigate('Elimina Utente [Admin]',{
-                          email: data.item.email
-                })}>
-              <Text style={styles.text}>Elimina Utente</Text>
-         </TouchableOpacity>
-     </View>
-     <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
-     <View style={{ flex: 1}}>
-         <TouchableOpacity style={styles.buttonPartecipa}
-                            onPress = {() => Alert.alert("Info Utente",
-                                              "Eventi Creati: "+data.item.eventiCreati+"\n\n"+
-                                              "Partecipa a: "+data.item.partecipazioneEventi+"\n\n"
-                            )}>
-              <Text style={styles.text}>Info Utente</Text>
-         </TouchableOpacity>
-     </View>
-     </View>
-  </Card>
-
-  
-
+  renderItem=(data)=> 
+  <Card containerStyle={{padding: 0}} >
+  {
+        <ListItem
+          key={data.item.id}
+          title={data.item.body+"  "+data.item.orarioPubblicazione}
+          leftAvatar={{ source: { uri: data.item.mittente.photoUrl} }}
+        />
+  }
+</Card>
   render(){
   if(this.state.loading){
     return( 
@@ -86,7 +60,7 @@ export default class ListaUser extends React.Component {
     return(
     <View>
         <Text style = {styles.instructions}>
-          Al momento non ci sono utenti iscritti.
+          Al momento non ci sono commenti pubblicati.
         </Text>
     </View>
     )}
@@ -100,8 +74,9 @@ export default class ListaUser extends React.Component {
   )}
   }
 
+
   const { width: WIDTH } = Dimensions.get('window')
-  
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,

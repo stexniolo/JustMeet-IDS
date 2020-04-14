@@ -45,7 +45,7 @@ export default class GoogleLogin extends React.Component {
     } finally {
 
      // componentDidMount(){
-        return fetch('http://192.168.1.8:8080/users', {
+        return fetch('http://192.168.1.9:8080/users', {
             method: 'POST',
             headers: {
               Accept: 'application/json',

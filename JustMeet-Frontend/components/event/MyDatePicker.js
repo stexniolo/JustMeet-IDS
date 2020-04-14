@@ -24,8 +24,8 @@ export default class MyDatePicker extends React.Component {
 
   render(){
     return (
-      <View>
-        <Text style={styles.text}>
+      <View style={styles.form}>
+        <Text style = {styles.text2}>
           Scegi Giorno
         </Text>
         <RNPickerSelect
@@ -46,7 +46,7 @@ export default class MyDatePicker extends React.Component {
             ]}
         />
 
-          <Text style={styles.text}>
+          <Text style = {styles.text2}>
             Scegli mese
           </Text>
         <RNPickerSelect
@@ -68,7 +68,7 @@ export default class MyDatePicker extends React.Component {
             ]}
         />
 
-          <Text style={styles.text}>
+          <Text style = {styles.text2}>
             Scegli ore
           </Text>
         <RNPickerSelect
@@ -91,7 +91,7 @@ export default class MyDatePicker extends React.Component {
         />
 
 
-          <Text style={styles.text}>
+          <Text style = {styles.text2}>
             Scegli minuti
           </Text>
         <RNPickerSelect
@@ -116,7 +116,7 @@ export default class MyDatePicker extends React.Component {
                 ]}
         />
 
-          <Text style={styles.text}>
+          <Text style = {styles.text2}>
             Scegli Anno
           </Text>
         <RNPickerSelect
@@ -148,28 +148,43 @@ export default class MyDatePicker extends React.Component {
                              ore: this.state.ore,
                              minuti: this.state.minuti
                            })}>
-          <Text >Fatto </Text>
+          <Text style={styles.text}>Fatto </Text>
       </TouchableOpacity>
+
+      <Text style={styles.warning}>N.B.Potrai continuare solo se compili tutto</Text>
       </View>
     )
   };
 }
 
 const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 20,
-    marginTop: 20
+  text2:{
+    fontSize: 15,
+    color: 'black',
+    textAlign: 'center',
   },
   text: {
     color: 'black',
     textAlign: 'center',
-    fontSize: 15,
-    fontWeight: 'bold'
+    fontSize: 20,
+    fontWeight: "bold"
   },
   form: {
+    marginBottom: 20,
+    marginTop: 30
+  },
+  button: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 20,
     marginTop: 20,
-    marginBottom: 20
+    width: 300,
+    borderRadius:50,
+  },
+  warning:{
+    fontSize: 15,
+    color: 'red',
+    textAlign: 'center',
   }
 })

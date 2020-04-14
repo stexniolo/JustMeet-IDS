@@ -1,5 +1,6 @@
 import React from "react";
 import {
+Image,
 Button,
 Alert,
 Dimensions,
@@ -12,27 +13,29 @@ TouchableOpacity
 } from "react-native";
 import {Card,Icon} from 'react-native-elements' 
 
-export default class PartecipazioneEventi extends React.Component {
+export default class EventList extends React.Component {
 
   constructor(props) {
   super(props);
   this.state = {
+    photoPath: "",
     loading: true,
     dataSource:[],
     participantName : this.props.route.params.fullName
     };
   }
   componentDidMount(){
-    fetch("http://192.168.1.9:8080/users/"+this.props.route.params.email+"/participantEvent")
-    .then(response => response.json())
-    .then((responseJson)=> {
-      this.setState({
-      loading: false,
-      dataSource: responseJson
-      })
+
+  fetch("http://192.168.1.9:8080/events/topics/"+this.props.route.params.topic)
+  .then(response => response.json())
+  .then((responseJson)=> {
+    this.setState({
+    loading: false,
+    dataSource: responseJson
     })
-    .catch(error=>console.log(error)) //to catch the errors if any
-    }
+  })
+  .catch(error=>console.log(error)) //to catch the errors if any
+  }
   FlatListItemSeparator = () => {
   return (
     <View style={{
@@ -43,27 +46,43 @@ export default class PartecipazioneEventi extends React.Component {
   />
   );
   }
-  renderItem=(data)=>
-
+  renderItem=(data)=> 
+    
   <Card
   title={data.item.title}
   image={imageMap[data.item.topic]}
   >
+    
   <Text style={{marginBottom: 10}}>
     {data.item.description}{"\n\n"}
     Limite partecipanti : {data.item.numPartecipanti}
   </Text>
+  <View style={{ flexDirection: "row" }}>
      <View style={{ flex: 1 }}>
          <TouchableOpacity style={styles.buttonPartecipa }
-               onPress = {() => this.props.navigation.navigate('Annulla Partecipazione',{
-                          title : data.item.title,
-                          idEvento: data.item.id,
-                          participantName: this.state.participantName})}>
-              <Text style={styles.text}>Annulla Partecipazione</Text>
+               onPress = {() => this.props.navigation.navigate('PostPartecipante',{
+                          title: data.item.title,
+                          idEvento : data.item.id,
+                          fullName: this.state.participantName,
+                          email: this.props.route.params.email})}>
+              <Text style={styles.text}>Partecipa</Text>
          </TouchableOpacity>
      </View>
      <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
+     <View style={{ flex: 1}}>
+         <TouchableOpacity style={styles.buttonPartecipa}
+                            onPress = {() => Alert.alert("Info Evento",
+                                              "Dove: "+data.item.location.nome+"\n\n"+
+                                              "Quando: "+data.item.date+"\n\n"+
+                                              "Partecipanti: "+data.item.participants+"\n\n"+
+                                              "Organizzatore: "+data.item.organizzatore+"\n\n"+
+                                              "Categoria: "+data.item.topic)}>
+              <Text style={styles.text}>Info</Text>
+         </TouchableOpacity>
+     </View>
+     </View>
   </Card>
+  
 
   render(){
   if(this.state.loading){
@@ -74,11 +93,11 @@ export default class PartecipazioneEventi extends React.Component {
   )}
   if(this.state.dataSource.length == 0){
     return(
-        <View>
-            <Text style={styles.instructions}>
-                Non ti sei prenotato a nessun evento.
-            </Text>
-        </View>
+    <View>
+        <Text style = {styles.instructions}>
+          Al momento non ci sono eventi pubblicati della categoria "{this.props.route.params.topic}"
+        </Text>
+    </View>
     )}
   return(
   <FlatList
@@ -90,7 +109,6 @@ export default class PartecipazioneEventi extends React.Component {
   )}
   }
 
-
   var imageMap = {
     'AMICI' : require('../images/AMICI.jpg'),
     'GENERALE':  require('../images/GENERALE.jpg'),
@@ -99,9 +117,7 @@ export default class PartecipazioneEventi extends React.Component {
     'STUDIO':  require('../images/STUDIO.jpg')
   }
 
-
   const { width: WIDTH } = Dimensions.get('window')
-
 
   const styles = StyleSheet.create({
     container: {
@@ -123,9 +139,10 @@ export default class PartecipazioneEventi extends React.Component {
       alignSelf: 'stretch',
       backgroundColor: '#2980B9'
     },
-    button: {
-      alignSelf: 'stretch',
-      backgroundColor: '#2980B9'
+    buttonInfo: {
+      width: WIDTH - 55,
+      backgroundColor: '#448AFF',
+      alignItems: 'flex-end',
     },
     text: {
       alignSelf: 'center',

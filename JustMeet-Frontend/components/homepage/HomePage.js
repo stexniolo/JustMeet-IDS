@@ -22,12 +22,9 @@ export default class HomePage extends React.Component {
 
     render(){
       return (
-
-    
-      <ImageBackground source={require("../images/tenor9.gif")} style={styles.image}>
-
+        <View style = {styles.container}>
         <View style={styles.card}>
-           <Image source={require('../images/FontText.png')} /> 
+           <Text style={styles.titleText}>JustMeet</Text>
         </View>
 
 
@@ -45,13 +42,20 @@ export default class HomePage extends React.Component {
           })}>
           <Text style = {styles.text}> Scopri gli eventi </Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Cerca Evento',{
+            fullName: this.state.fullName,
+            email: this.state.email
+          })}>
+          <Text style = {styles.text}> Cerca Eventi </Text>
+      </TouchableOpacity>
         
       <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Scegli Luogo',{
               email: this.state.email
               })}>
           <Text style = {styles.text}> Crea un evento </Text>
       </TouchableOpacity>
-   </ImageBackground>
+   </View>
     );
     }
 
@@ -102,18 +106,21 @@ image: {
     fontSize: 25
   },
   text: {
-    color: 'white',
+    color: 'black',
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold'
   },
   button: {
     alignItems: 'center',
+    backgroundColor: '#DDDDDD',
     padding: 20,
     marginTop: 20,
-    borderRadius:50,
     width: 300,
-    backgroundColor: 'rgba(255, 255, 255, 0.4)'
-    //backgroundColor: 'rgba(52, 52, 52, 0.3)'
+    borderRadius:50
   },
+  titleText: {
+    fontSize: 40,
+    fontWeight: "bold"
+  }
 });
