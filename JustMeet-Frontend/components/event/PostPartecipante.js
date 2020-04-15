@@ -5,7 +5,7 @@ export default class PostPartecipante extends React.Component {
 
 
   componentDidMount(){
-    fetch('http://192.168.1.8:8080/events/'+this.props.route.params.idEvento+'/participants', {
+    fetch('http://192.168.1.9:8080/events/'+this.props.route.params.idEvento+'/participants', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -15,7 +15,8 @@ export default class PostPartecipante extends React.Component {
           fullName: this.props.route.params.fullName
         }),
       });
-       fetch('http://192.168.1.8:8080/users/'+this.props.route.params.email+'/participantEvent/'+
+
+       fetch('http://192.168.1.9:8080/users/'+this.props.route.params.email+'/participantEvent/'+
               this.props.route.params.title, {
         method: 'POST',
         headers: {
@@ -30,7 +31,7 @@ export default class PostPartecipante extends React.Component {
             <View>
                  <Button
                     title="Prenotazione fatta!"
-                    onPress={() => this.props.navigation.navigate("JustMeet")}
+                    onPress={() => this.props.navigation.navigate("Home Page")}
         />
             </View>
         )  

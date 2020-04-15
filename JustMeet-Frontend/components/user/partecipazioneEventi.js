@@ -58,7 +58,8 @@ export default class PartecipazioneEventi extends React.Component {
                onPress = {() => this.props.navigation.navigate('Annulla Partecipazione',{
                           title : data.item.title,
                           idEvento: data.item.id,
-                          participantName: this.state.participantName})}>
+                          participantName: this.state.participantName,
+                          email: this.props.route.params.email})}>
               <Text style={styles.text}>Annulla Partecipazione</Text>
          </TouchableOpacity>
      </View>

@@ -1,7 +1,7 @@
 import React from 'react'
 import {
     Image,
-    Button,
+    ImageBackground,
     Alert,
     Dimensions,
     StyleSheet,
@@ -43,6 +43,7 @@ export default class ProfiloUtente extends React.Component {
       )}
       return(
         <View style = {styles.container}>
+        <ImageBackground source={require("../images/Prova.png")} style={styles.image2}>
         <View style={styles.view}>
           <Text style={styles.header}>Nome: {this.state.dataSource.nome}</Text>
           <Text style={styles.header}>Cognome: {this.state.dataSource.cognome}</Text>
@@ -50,7 +51,7 @@ export default class ProfiloUtente extends React.Component {
           <Image style={styles.image} source={{uri: this.state.dataSource.photoUrl}} />  
         </View>
 
-        <TouchableOpacity style={styles.button}
+      <TouchableOpacity style={styles.button}
                         onPress={() => this.props.navigation.navigate('Email')}>
           <Text style = {styles.text}> Segnala un problema </Text>
       </TouchableOpacity>
@@ -60,6 +61,13 @@ export default class ProfiloUtente extends React.Component {
                           email: this.state.dataSource.email
                         })}>
           <Text style = {styles.text}> Elimina il mio account </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button}
+                        onPress={() => this.props.navigation.navigate('Commenti Pubblicati',{
+                          email:this.state.dataSource
+                        })}>
+          <Text style = {styles.text}> I miei Commenti </Text>
       </TouchableOpacity>
 
         <View style={{ flexDirection: "row" }}>
@@ -72,7 +80,6 @@ export default class ProfiloUtente extends React.Component {
               <Text style={styles.text}>Eventi Creati</Text>
          </TouchableOpacity>
      </View>
-     <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
      <View style={{ flex: 1}}>
          <TouchableOpacity style={styles.button}
            onPress = {() => this.props.navigation.navigate('Partecipazione a Eventi',{
@@ -83,6 +90,7 @@ export default class ProfiloUtente extends React.Component {
          </TouchableOpacity>
      </View>
      </View>
+     </ImageBackground> 
      </View>
       )}
     }
@@ -105,7 +113,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: 'rgba(142, 68, 173, 0.5)',
     alignItems: "center",
     justifyContent: "center"
   },
@@ -121,6 +129,14 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderRadius: 150
   },
+  image2: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
+  },
   text: {
     color: 'black',
     textAlign: 'center',
@@ -129,10 +145,11 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    //backgroundColor: '#DDDDDD',
+    backgroundColor: 'rgba(142, 68, 173, 0.2)',
     padding: 20,
     marginTop: 20,
-    borderRadius:50
+    borderRadius:70
   },
   button2:{
     alignSelf: 'stretch',

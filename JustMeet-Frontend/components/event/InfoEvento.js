@@ -18,18 +18,19 @@ export default class InfoEvento extends React.Component{
         return(
             <View>
                 <Text style={styles.text}>
-                    Luogo: {this.props.route.params.nomeLocation}{"\n"}
-                    Data : {this.props.route.params.date}{"\n"}
-                    organizzatore: {this.props.route.params.organizzatore}{"\n"}
-                    topic: {this.props.route.params.topic}{"\n"}
-                    partecipanti: {this.props.route.params.participants}{"\n"}
-                    adesioni attuali: {this.props.route.params.adesioniAttuali}{"\n"}
+                    Luogo:{"\n"} {this.props.route.params.nomeLocation}{"\n"}{"\n"}
+                    Data : {"\n"}{this.props.route.params.date}{"\n"}{"\n"}
+                    organizzatore:{"\n"} {this.props.route.params.organizzatore}{"\n"}{"\n"}
+                    topic: {"\n"}{this.props.route.params.topic}{"\n"}{"\n"}
+                    partecipanti:{"\n"} {this.props.route.params.participants}{"\n"}{"\n"}
+                    adesioni attuali: {"\n"}{this.props.route.params.adesioniAttuali}{"\n"}{"\n"}
                 </Text>
 
                 <TouchableOpacity style={styles.button}
                               onPress = {() => this.props.navigation.navigate("Scrivi Commento",{
                                 idEvento : this.props.route.params.id,
                                 email: this.props.route.params.email,
+                                idEvento: this.props.route.params.id
                             })}>
                         <Text style={styles.text}>Pubblica un Commento</Text>
                 </TouchableOpacity>
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
       },
       button: {
+        alignSelf: 'center',
         alignItems: 'center',
         backgroundColor: '#DDDDDD',
         padding: 20,

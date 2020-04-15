@@ -1,6 +1,5 @@
 import React from 'react';
 import { TouchableOpacity, Text, Button, Platform, StyleSheet, View,TextInput ,Dimensions} from 'react-native';
-import Touchable from 'react-native-platform-touchable';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 

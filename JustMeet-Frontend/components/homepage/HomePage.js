@@ -1,8 +1,6 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet ,ImageBackground,Dimensions} from 'react-native'
-import { Card, ListItem, Button, Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { Asset } from "expo-asset";
 
 
 const { width: WIDTH } = Dimensions.get('window')
@@ -11,9 +9,9 @@ export default class HomePage extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-       id: this.props.route.params.id,
-       nome: this.props.route.params.nome,
-       photo: this.props.route.params.photoUrl,
+       id:  this.props.route.params.id,
+       nome:  this.props.route.params.nome,
+       photo:  this.props.route.params.photoUrl,
        email: this.props.route.params.email,
        fullName: this.props.route.params.fullName
       }
@@ -23,6 +21,7 @@ export default class HomePage extends React.Component {
     render(){
       return (
         <View style = {styles.container}>
+          <ImageBackground source={require("../images/Prova.png")} style={styles.image}>
         <View style={styles.card}>
            <Text style={styles.titleText}>JustMeet</Text>
         </View>
@@ -55,6 +54,7 @@ export default class HomePage extends React.Component {
               })}>
           <Text style = {styles.text}> Crea un evento </Text>
       </TouchableOpacity>
+      </ImageBackground>
    </View>
     );
     }
@@ -66,10 +66,6 @@ const styles = StyleSheet.create({
   tinyLogo: {
     width: 100,
     height: 100,
-  },
-  container: {
-    flex: 1,
-    flexDirection: "column"
   },
   backgroundContainer: {
   flex: 1,
@@ -95,12 +91,6 @@ image: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
   header: {
     color: 'white',
     fontSize: 25
@@ -111,9 +101,16 @@ image: {
     fontSize: 20,
     fontWeight: 'bold'
   },
+  container: {
+    flex: 1,
+    backgroundColor: 'rgba(142, 68, 173, 0.5)',
+    alignItems: "center",
+    justifyContent: "center"
+  },
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    //backgroundColor: '#DDDDDD',
+    backgroundColor: 'rgba(142, 68, 173, 0.2)',
     padding: 20,
     marginTop: 20,
     width: 300,

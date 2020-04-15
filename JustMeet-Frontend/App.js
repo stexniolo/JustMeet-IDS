@@ -39,6 +39,10 @@ import PubblicaCommento from '././components/event/PubblicaCommento.js';
 import ScriviCommento from '././components/event/ScriviCommento.js';
 import EliminaUtente from '././components/user/EliminaUtente.js';
 import EliminaDefinitivo from '././components/user/EliminaDefinitivo.js';
+import CommentiPubblicati from '././components/user/CommentiPubblicati.js';
+import ModificaCommento from '././components/user/ModificaCommento.js';
+import PutCommento from '././components/user/PutCommento.js';
+import DeleteCommento from '././components/user/DeleteCommento.js';
 
 /*
 const Stack = createBottomStackNavigator();
@@ -64,6 +68,10 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName = "Benvenuto">
+        <Stack.Screen name = "Cancella Commento" component = {DeleteCommento}/>
+        <Stack.Screen name = "PutCommento" component = {PutCommento}/>
+        <Stack.Screen name = "Modifica Commento" component = {ModificaCommento}/>
+        <Stack.Screen name = "Commenti Pubblicati" component = {CommentiPubblicati}/> 
         <Stack.Screen name = "Elimina Definitivo" component = {EliminaDefinitivo}/>
         <Stack.Screen name = "Elimina Utente" component = {EliminaUtente}/>
         <Stack.Screen name = "Scrivi Commento" component= {ScriviCommento}/>

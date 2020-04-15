@@ -388,7 +388,7 @@ class JustMeetTest {
 		json.put("fullName", stefano.getFullName());
 		
 		String idEvent = Integer.toString(evento1.getId());
-		eventController.deleteParticipant(idEvent, json);
+		eventController.deleteParticipant(idEvent,stefano.getEmail());
 		Event e = eventController.show(idEvent);
 		
 		assertEquals(0,e.getParticipants().size());

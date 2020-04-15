@@ -1,7 +1,6 @@
 import React from "react"
 import { StyleSheet, Text, View, Image, Button } from "react-native"
 import * as Google from 'expo-google-app-auth'
-import JustMeet from '../homepage/HomePage.js'
 import LoginPage from './LoginPage.js'
 
 

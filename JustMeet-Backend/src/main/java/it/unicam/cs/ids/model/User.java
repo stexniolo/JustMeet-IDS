@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="users")
@@ -49,6 +51,7 @@ public class User {
 	
 	@JoinColumn(name = "commentiPubblicati")
 	@OneToMany(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Set<Commento> commentiPubblicati;
 	
 	

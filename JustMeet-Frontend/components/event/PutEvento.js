@@ -3,7 +3,7 @@ import { View, Text,Button,StyleSheet,Dimensions,TextInput,TouchableOpacity} fro
 
 export default class PutEvento extends React.Component {
     componentDidMount(){
-        return fetch('http://192.168.1.8:8080/events/'+this.props.route.params.id, {
+        return fetch('http://192.168.1.9:8080/events/'+this.props.route.params.id, {
             method: 'PUT',
             headers: {
               Accept: 'application/json',
@@ -28,7 +28,7 @@ export default class PutEvento extends React.Component {
             <View>
                  <Button
                     title="Evento modificato!"
-                    onPress={() => this.props.navigation.navigate("JustMeet")}
+                    onPress={() => this.props.navigation.navigate("Home Page")}
         />
             </View>
         )

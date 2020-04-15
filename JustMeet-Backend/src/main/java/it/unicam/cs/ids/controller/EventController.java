@@ -125,18 +125,19 @@ public class EventController {
 	      }
 	  }
 	  
-	  @DeleteMapping("/events/{id}/participants")
+	  @DeleteMapping("/events/{id}/participants/{email}")
 	  /**
 	   * Rimuove un partecipante dall'evento con id specifico
 	   */
-	  public void deleteParticipant(@PathVariable String id,@RequestBody Map<String,String> body) {
-		  int eventId = Integer.parseInt(id);
-	      Event event = eventRepository.findByid(eventId);
-	      String participant = body.get("fullName");
-	      int index = event.getParticipants().indexOf(participant);
-	      event.getParticipants().remove(index);
+	  public void deleteParticipant(@PathVariable String id,@PathVariable String email) {
+		  String nomeUser = this.userRepository.findByEmail(email).getFullName();
+		  
+	      Event event = eventRepository.findByid(Integer.parseInt(id));
+	    
+	      event.getParticipants().remove(nomeUser);
 	      int adesioni = event.getAdesioniAttuali() - 1;
 	      event.setAdesioniAttuali(adesioni);
+	    	  
 	      eventRepository.save(event);
 	  }
 	  

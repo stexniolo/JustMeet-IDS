@@ -18,7 +18,7 @@ export default class AnnullaEvento extends React.Component {
             <View>
                  <Button
                     title="Evento annullato!"
-                    onPress={() => this.props.navigation.navigate("JustMeet")}
+                    onPress={() => this.props.navigation.navigate("Home Page")}
         />
             </View>
         )

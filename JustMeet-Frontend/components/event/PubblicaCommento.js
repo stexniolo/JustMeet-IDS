@@ -11,10 +11,23 @@ export default class PubblicaCommento extends React.Component {
             },
             body: JSON.stringify({
               body: this.props.route.params.body,
-              email: this.props.route.params.email
+              email: this.props.route.params.email,
+              idEvento: this.props.route.params.idEvento
             })
           })
-}
+        fetch('http://192.168.1.9:8080/users/'+this.props.route.params.email+'/comments',{
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            body: this.props.route.params.body,
+            email: this.props.route.params.email,
+            idEvento: this.props.route.params.idEvento
+          })
+        })
+    }
 
 render(){
     return (
