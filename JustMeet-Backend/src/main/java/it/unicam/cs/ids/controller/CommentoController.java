@@ -15,18 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.unicam.cs.ids.model.Commento;
-import it.unicam.cs.ids.model.User;
 import it.unicam.cs.ids.repository.CommentoRepository;
-import it.unicam.cs.ids.repository.UserRepository;
 
 @RestController
 public class CommentoController {
 	
 	@Autowired
 	private CommentoRepository commentoRepository;
-	
-	@Autowired
-	private UserRepository userRepository;
 	
 	@GetMapping("/comments")
 	public List<Commento> index(){
@@ -42,11 +37,10 @@ public class CommentoController {
 	public void createCommento(@RequestBody Map<String,String> body) {
 		//body: body,email
 		String bodyCommento = body.get("body");
-		User user = this.userRepository.findByEmail(body.get("email"));
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
 		LocalDateTime now = LocalDateTime.now();   
 		
-		Commento nuovoCommento = new Commento(bodyCommento,user,dtf.format(now),Integer.parseInt(body.get("idEvento")));
+		Commento nuovoCommento = new Commento(bodyCommento,body.get("photo"),dtf.format(now),Integer.parseInt(body.get("idEvento")));
 		this.commentoRepository.save(nuovoCommento);
 	}
 	

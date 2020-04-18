@@ -36,25 +36,6 @@ public class EventController {
 	
 	@Autowired
 	private CommentoRepository commentoRepository;
-
-	@PostMapping("/events/toConfirm")
-	public void createToConfirm(@RequestBody Map<String, String> body) {
-		String title = body.get("title");
-        String description = body.get("description");
-        String data = body.get("date");
-     	String latitude = body.get("latitude");
-        String longitude = body.get("longitude");
-        Location location = new Location(body.get("nome"),Double.parseDouble(latitude),Double.parseDouble(longitude));
-        Topic topic = new Topic(Integer.parseInt(body.get("topic")));
-        String organizzatore = body.get("organizzatore");
-        String numPartecipanti = body.get("numPartecipanti");
-	    int partecipanti = Integer.parseInt(numPartecipanti);
-	    if(eventRepository.findByTitle(title) != null)
-	    	return;
-	    Event e = new Event(title,description,data,location,topic,organizzatore,partecipanti);
-	    e.getParticipants().add(organizzatore);
-	    eventRepository.save(e);
-	}
 	
 	
 	  @GetMapping("/events")
@@ -173,7 +154,7 @@ public class EventController {
 	  public List<Event> showByTopic(@PathVariable String id){
 		  List<Event> eventi = new ArrayList<Event>();
 		  for(Event e : this.eventRepository.findAll()) {
-			  if(e.getTopic().toString() == id) {
+			  if(e.getTopic().toString().equals(id)) {
 				  eventi.add(e);
 			  }
 		  }
@@ -186,6 +167,7 @@ public class EventController {
 	   * Mostra tutti gli eventi distanti meno di 100km
 	   */
 	  public List<Event> showByLocation(@PathVariable String latitude,@PathVariable String longitude){
+		
 		  double latitudine = Double.parseDouble(latitude);
 		  double longitudine = Double.parseDouble(longitude);
 		  List<Event> eventi = new ArrayList<Event>();
@@ -202,21 +184,6 @@ public class EventController {
 		  return this.eventRepository.findByid(Integer.parseInt(id)).getCommento();
 	  }
 	  
-	  @PostMapping("/events/{id}/comments")
-	  public void addComment(@PathVariable String id,@RequestBody Map<String,String> commento) {
-		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
-		  LocalDateTime now = LocalDateTime.now();
-		  Commento nuovoCommento = new Commento(
-				  commento.get("body"),
-				  this.userRepository.findByEmail(commento.get("email")),
-				  dtf.format(now),
-				  Integer.parseInt(commento.get("idEvento")));   
-		
-		  this.commentoRepository.save(nuovoCommento);
-		  Event evento = this.eventRepository.findByid(Integer.parseInt(id));
-		  evento.getCommento().add(nuovoCommento);
-		  this.eventRepository.save(evento);
-	  }
 	  
 	  @PutMapping("/events/{id}/comments/{id2}")
 	  public void modificaCommento(@PathVariable String id, @PathVariable String id2,@RequestBody Map<String,String> commento) {

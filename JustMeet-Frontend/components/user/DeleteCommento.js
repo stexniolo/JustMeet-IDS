@@ -17,7 +17,7 @@ export default class DeleteCommento extends React.Component{
             <View>
                  <TouchableOpacity 
                 style={styles.button} 
-                onPress={() => {this.props.navigation.navigate("Profilo Utente")}}>
+                onPress={() => {this.props.navigation.navigate("Home Page")}}>
                   <Text style = {styles.text}> Fatto </Text>
                 </TouchableOpacity>
             </View>

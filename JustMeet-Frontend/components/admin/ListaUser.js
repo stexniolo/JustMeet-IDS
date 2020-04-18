@@ -1,16 +1,18 @@
 import React from "react";
 import {
+Button,
+Alert,
+Dimensions,
 StyleSheet,
 View,
 ActivityIndicator,
 FlatList,
 Text,
-TouchableOpacity,
-Dimensions,
-Card
+TouchableOpacity
 } from "react-native";
+import {Card,Icon} from 'react-native-elements' 
 
-export default class ListaUser extends React.Component {
+export default class ListaEventi extends React.Component {
 
   constructor(props) {
   super(props);
@@ -41,23 +43,21 @@ export default class ListaUser extends React.Component {
   );
   }
   renderItem=(data)=>
-
-  <Card
+<Card
   title={data.item.fullName}
-  image={data.item.photoUrl}
+  image= {{uri: data.item.photoUrl}}
   >
   <Text style={{marginBottom: 10}}>
-    {data.item.nome}{"\n\n"}
-    {data.item.cognome}
-    {data.item.email}
+    {data.item.fullName}    {data.item.email}  {"\n\n"}
+    Ammonizioni: {data.item.ammonizioni}
   </Text>
   <View style={{ flexDirection: "row" }}>
      <View style={{ flex: 1 }}>
          <TouchableOpacity style={styles.buttonPartecipa }
-               onPress = {() => this.props.navigation.navigate('Elimina Utente [Admin]',{
+               onPress = {() => this.props.navigation.navigate('Ammonisci Utente [Admin]',{
                           email: data.item.email
                 })}>
-              <Text style={styles.text}>Elimina Utente</Text>
+              <Text style={styles.text}>Ammonisci Utente</Text>
          </TouchableOpacity>
      </View>
      <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
@@ -73,8 +73,6 @@ export default class ListaUser extends React.Component {
      </View>
   </Card>
 
-  
-
   render(){
   if(this.state.loading){
     return( 
@@ -86,7 +84,7 @@ export default class ListaUser extends React.Component {
     return(
     <View>
         <Text style = {styles.instructions}>
-          Al momento non ci sono utenti iscritti.
+          Al momento non ci sono eventi pubblicati.
         </Text>
     </View>
     )}
@@ -101,7 +99,8 @@ export default class ListaUser extends React.Component {
   }
 
   const { width: WIDTH } = Dimensions.get('window')
-  
+
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,

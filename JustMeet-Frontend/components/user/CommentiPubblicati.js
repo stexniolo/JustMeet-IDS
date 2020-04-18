@@ -27,8 +27,12 @@ export default class CommentiPubblicati extends React.Component {
     loading: false,
     dataSource: responseJson
     })
-  })
-  }
+  }).catch(function(error) {
+    console.log('There has been a problem with your fetch operation: ' + error.message);
+     // ADD THIS THROW error
+      throw error;
+    })
+}
   FlatListItemSeparator = () => {
   return (
     <View style={{
@@ -44,7 +48,7 @@ export default class CommentiPubblicati extends React.Component {
         <ListItem
           key={data.item.id}
           title={data.item.body+"  "+data.item.orarioPubblicazione}
-          leftAvatar={{ source: { uri: data.item.mittente.photoUrl} }}
+          leftAvatar={{ source: { uri: data.item.photoMittente} }}
         />
         <View style={{ flexDirection: "row" }}>
             <View style={{ flex: 1 }}>

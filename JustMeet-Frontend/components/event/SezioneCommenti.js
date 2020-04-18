@@ -45,7 +45,7 @@ export default class SezioneCommenti extends React.Component {
         <ListItem
           key={data.item.id}
           title={data.item.body+"  "+data.item.orarioPubblicazione}
-          leftAvatar={{ source: { uri: data.item.mittente.photoUrl} }}
+          leftAvatar={{ source: { uri: data.item.photoMittente} }}
         />
   }
 </Card>

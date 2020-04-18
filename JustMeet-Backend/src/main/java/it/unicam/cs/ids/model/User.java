@@ -3,6 +3,7 @@ package it.unicam.cs.ids.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -50,10 +51,12 @@ public class User {
 	private Set<Event> partecipazioneEventi;
 	
 	@JoinColumn(name = "commentiPubblicati")
-	@OneToMany(fetch = FetchType.LAZY)
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private Set<Commento> commentiPubblicati;
 	
+	@Column
+	private int ammonizioni;
 	
 	private String fullName;
 	
@@ -72,10 +75,17 @@ public class User {
 		this.partecipazioneEventi = new HashSet<Event>();
 		this.commentiPubblicati = new HashSet<Commento>();
 		this.fullName = this.nome+" "+this.cognome;
+		this.ammonizioni = 0;
 	}
 	
-	
-	
+	public int getAmmonizioni() {
+		return ammonizioni;
+	}
+
+	public void setAmmonizioni(int ammonizioni) {
+		this.ammonizioni = ammonizioni;
+	}
+
 	public Set<Commento> getCommentiPubblicati() {
 		return commentiPubblicati;
 	}

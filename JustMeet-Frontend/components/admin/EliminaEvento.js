@@ -3,7 +3,7 @@ import { View, Text,Button,StyleSheet,Dimensions,TextInput,TouchableOpacity} fro
 
 export default class EliminaEvento extends React.Component {
     componentDidMount(){
-        fetch('http://192.168.1.8:8080/events/'+this.props.route.params.idEvento, {
+        fetch('http://192.168.1.9:8080/events/'+this.props.route.params.idEvento, {
             method: 'DELETE',
             headers: {
               Accept: 'application/json',

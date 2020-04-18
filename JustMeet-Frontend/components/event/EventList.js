@@ -80,7 +80,9 @@ export default class EventList extends React.Component {
                               organizzatore: data.item.organizzatore,
                               topic: data.item.topic,
                               adesioniAttuali: data.item.adesioniAttuali,
-                              commenti: data.item.commento
+                              commenti: data.item.commento,
+                              photo: this.props.route.params.photo,
+                              title: data.item.title
                             })}>
               <Text style={styles.text}>Info</Text>
          </TouchableOpacity>

@@ -27,7 +27,7 @@ import DeleteUser from '././components/admin/DeleteUser.js';
 import EliminaEvento from '././components/admin/EliminaEvento.js';
 import ListaEventi from '././components/admin/ListaEventi.js';
 import ListaUser from '././components/admin/ListaUser.js';
-import MyDatePicker from './components/event/MyDatePicker.js';
+import MyDatePicker from '././components/event/MyDatePicker.js';
 import SelectLocation from '././components/event/SelectLocation.js';
 import CercaEvento from '././components/event/CercaEvento.js';
 import TopicEventsList from '././components/event/TopicEventsList.js';
@@ -43,6 +43,7 @@ import CommentiPubblicati from '././components/user/CommentiPubblicati.js';
 import ModificaCommento from '././components/user/ModificaCommento.js';
 import PutCommento from '././components/user/PutCommento.js';
 import DeleteCommento from '././components/user/DeleteCommento.js';
+import CasellaSegnalazioni from '././components/admin/CasellaSegnalazioni.js';
 
 /*
 const Stack = createBottomStackNavigator();
@@ -84,9 +85,10 @@ function App() {
         <Stack.Screen name = "Cerca Evento" component = {CercaEvento}/>
         <Stack.Screen name = "Scegli Luogo" component={SelectLocation}/> 
         <Stack.Screen name = "Scegli Data" component={MyDatePicker} />
+        <Stack.Screen name = "Casella Segnalazioni [Admin]" component = {CasellaSegnalazioni}/>
         <Stack.Screen name = "Lista User [Admin]" component={ListaUser} />
         <Stack.Screen name = "Lista Eventi [Admin]" component={ListaEventi} />
-        <Stack.Screen name = "Elimina Utente [Admin]" component={DeleteUser} />
+        <Stack.Screen name = "Ammonisci Utente [Admin]" component={DeleteUser} />
         <Stack.Screen name = "Elimina Evento [Admin]" component={EliminaEvento} />
         <Stack.Screen name = "Email" component={GmailSend} />
         <Stack.Screen name = "Google Maps" component={GoogleMaps} />

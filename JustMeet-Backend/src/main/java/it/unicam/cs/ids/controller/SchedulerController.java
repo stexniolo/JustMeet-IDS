@@ -29,13 +29,13 @@ public class SchedulerController {
 	@DeleteMapping("/events")
 	 @Scheduled(fixedRate = 600000) //10 minuti
 	    public void checkDatabase() {
-	        
-	        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	        String todayAsString = df.format(Calendar.getInstance().getTime());
 	        
 	        for(Event e : eventRepository.findAll()) {
-	        	if(e.before(todayAsString))
+	        	if(e.before(todayAsString)) {
 	        		eventRepository.delete(e);
+	        	}
 	        }
 	    }
 	 

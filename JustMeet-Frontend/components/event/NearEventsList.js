@@ -55,11 +55,12 @@ export default class NearEventsList extends React.Component {
     this.setState({
       locationY: userLocation.coords.longitude
     })
+
+    this.nearEventListFunc();
   }
 
-  componentDidMount(){
-  this._getLocation();
-  fetch("http://192.168.1.9:8080/events/locations/"+this.state.locationX+"/"+this.state.locationY)
+  nearEventListFunc(){
+    fetch("http://192.168.1.9:8080/events/locations/"+this.state.locationX+"/"+this.state.locationY)
   .then(response => response.json())
   .then((responseJson)=> {
     this.setState({
@@ -69,6 +70,11 @@ export default class NearEventsList extends React.Component {
   })
   .catch(error=>console.log(error)) //to catch the errors if any
   }
+
+  componentDidMount(){
+  this._getLocation();
+  }
+
   FlatListItemSeparator = () => {
   return (
     <View style={{
@@ -129,7 +135,7 @@ export default class NearEventsList extends React.Component {
     <View>
         <Text style = {styles.instructions}>
           Al momento non ci sono eventi disponibili nel raggio di 100 chilometri.{"\n"}{"\n"}{"\n"}
-          La tua posizione:{"\n"} [latitudine:{this.state.locationX}, longitudine:{this.state.locationY}]
+          La tua posizione:{"\n"} latitudine:{this.state.locationX}, longitudine:{this.state.locationY}
         </Text>
     </View>
     )}

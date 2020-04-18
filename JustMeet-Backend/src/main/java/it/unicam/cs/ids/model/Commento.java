@@ -1,14 +1,13 @@
 package it.unicam.cs.ids.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name="comment")
@@ -25,9 +24,8 @@ public class Commento {
 	@Column
 	private String body;
 	
-	@JoinColumn
-	@OneToOne(cascade = CascadeType.ALL)
-	private User mittente;
+	@Column
+	private String photoMittente;
 	
 	@Column
 	private String orarioPubblicazione;
@@ -36,9 +34,9 @@ public class Commento {
 		
 	}
 	
-	public Commento(String body,User mittente,String orario,int idEvento) {
+	public Commento(String body,String photo,String orario,int idEvento) {
 		this.body = body;
-		this.mittente = mittente;
+		this.photoMittente = photo;
 		this.orarioPubblicazione = orario;
 		this.idEvento = idEvento;
 	}
@@ -58,12 +56,13 @@ public class Commento {
 		this.body = body;
 	}
 
-	public User getMittente() {
-		return mittente;
+	
+	public String getPhotoMittente() {
+		return photoMittente;
 	}
 
-	public void setMittente(User mittente) {
-		this.mittente = mittente;
+	public void setPhotoMittente(String photoMittente) {
+		this.photoMittente = photoMittente;
 	}
 
 	public int getId() {

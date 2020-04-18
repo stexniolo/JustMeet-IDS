@@ -172,21 +172,25 @@ public class UserController {
 	  }
 	  
 	  
-	  @PostMapping("/users/{email}/comments")
-	  public void createCommento(@PathVariable String email,@RequestBody Map<String,String> commento) {
+	  @PostMapping("/users/{email}/comments/{title}")
+	  public void createCommento(@PathVariable String email,@PathVariable String title,@RequestBody Map<String,String> commento) {
 		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
 		  LocalDateTime now = LocalDateTime.now();
 		  Commento nuovoCommento = new Commento(
 				  commento.get("body"),
-				  this.userRepository.findByEmail(commento.get("email")),
+				  commento.get("photo"),
 				  dtf.format(now),
 				  Integer.parseInt(commento.get("idEvento")));   
 		
-		  this.commentoRepository.save(nuovoCommento);
+		this.commentoRepository.save(nuovoCommento);
 		  
 		User user = this.userRepository.findByEmail(email);
 		user.getCommentiPubblicati().add(nuovoCommento);
 		this.userRepository.save(user);
+		
+		Event e = this.eventRepository.findByTitle(title);
+		e.getCommento().add(nuovoCommento);
+		this.eventRepository.save(e);
 	  }
 	  
 	  @PutMapping("/users/{email}/comments/{id}")
@@ -197,5 +201,15 @@ public class UserController {
 		  c.setBody(commento.get("body"));
 		  c.setOrarioPubblicazione(dtf.format(now));
 		  this.commentoRepository.save(c);
+	  }
+	  
+	  @PutMapping("/users/{email}/ammonizioni")
+	  public void ammonisciUser(@PathVariable String email) {
+		  User u = this.userRepository.findByEmail(email);
+		  u.setAmmonizioni(u.getAmmonizioni()+1);
+		  if(u.getAmmonizioni() == 3) {
+			  this.userRepository.delete(u);
+		  }
+		  else this.userRepository.save(u);
 	  }
 }

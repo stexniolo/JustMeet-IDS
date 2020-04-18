@@ -65,7 +65,7 @@ export default class ProfiloUtente extends React.Component {
 
       <TouchableOpacity style={styles.button}
                         onPress={() => this.props.navigation.navigate('Commenti Pubblicati',{
-                          email:this.state.dataSource
+                          email:this.state.dataSource.email
                         })}>
           <Text style = {styles.text}> I miei Commenti </Text>
       </TouchableOpacity>

@@ -37,7 +37,8 @@ export default class HomePage extends React.Component {
 
       <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Eventi',{
             fullName: this.state.fullName,
-            email: this.state.email
+            email: this.state.email,
+            photo: this.state.photo
           })}>
           <Text style = {styles.text}> Scopri gli eventi </Text>
       </TouchableOpacity>

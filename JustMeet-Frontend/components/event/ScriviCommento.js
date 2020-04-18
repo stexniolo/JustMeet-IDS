@@ -35,7 +35,9 @@ export default class ScriviCommento extends React.Component {
                    this.props.navigation.navigate('Pubblica Commento',{
                      body: this.state.body,
                      idEvento: this.props.route.params.idEvento,
-                     email: this.props.route.params.email
+                     email: this.props.route.params.email,
+                     photo: this.props.route.params.photo,
+                     title: this.props.route.params.title
                    })
                } >
                    <Text style = {styles.text}>Pubblica Commento</Text>

@@ -63,7 +63,7 @@ public class Event {
 	private int adesioniAttuali;
 	
 	@JoinColumn
-	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private List<Commento> commento;
 	
 	public Event() {
@@ -203,14 +203,15 @@ public class Event {
 	
 	public boolean before(String date) {
 		//format(dd-mm-yyyy)
-		int anno1 = Integer.parseInt(this.getDate().substring(6, 9));
-		int anno2 = Integer.parseInt(date.substring(6, 9));
+		int anno1 = Integer.parseInt(this.getDate().substring(6, 10));
+		int anno2 = Integer.parseInt(date.substring(6, 10));
 		
-		int mese1 = Integer.parseInt(this.getDate().substring(3,4));
-		int mese2 = Integer.parseInt(date.substring(3,4));
+		int mese1 = Integer.parseInt(this.getDate().substring(3,5));
+		int mese2 = Integer.parseInt(date.substring(3,5));
 		
-		int giorno1 = Integer.parseInt(this.getDate().substring(0,1));
-		int giorno2 = Integer.parseInt(date.substring(0,1));
+		int giorno1 = Integer.parseInt(this.getDate().substring(0,2));
+		int giorno2 = Integer.parseInt(date.substring(0,2));
+		
 		
 		if(anno1<anno2) 
 			return true;

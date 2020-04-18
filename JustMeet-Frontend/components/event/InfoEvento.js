@@ -22,7 +22,7 @@ export default class InfoEvento extends React.Component{
                     Data : {"\n"}{this.props.route.params.date}{"\n"}{"\n"}
                     organizzatore:{"\n"} {this.props.route.params.organizzatore}{"\n"}{"\n"}
                     topic: {"\n"}{this.props.route.params.topic}{"\n"}{"\n"}
-                    partecipanti:{"\n"} {this.props.route.params.participants}{"\n"}{"\n"}
+                    partecipanti:{"\n"} {JSON.stringify(this.props.route.params.participants)}{"\n"}{"\n"}
                     adesioni attuali: {"\n"}{this.props.route.params.adesioniAttuali}{"\n"}{"\n"}
                 </Text>
 
@@ -30,7 +30,9 @@ export default class InfoEvento extends React.Component{
                               onPress = {() => this.props.navigation.navigate("Scrivi Commento",{
                                 idEvento : this.props.route.params.id,
                                 email: this.props.route.params.email,
-                                idEvento: this.props.route.params.id
+                                idEvento: this.props.route.params.id,
+                                photo: this.props.route.params.photo,
+                                title: this.props.route.params.title
                             })}>
                         <Text style={styles.text}>Pubblica un Commento</Text>
                 </TouchableOpacity>
