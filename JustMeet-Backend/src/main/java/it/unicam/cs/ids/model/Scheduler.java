@@ -22,41 +22,26 @@ public class Scheduler {
 	@Column
 	private int id;
 	
-	@Column
-	private String ultimoScehduling;
 	
 	@Column
-	private String orarioAttuale;
+	private String orarioScheduling;
 
 	
 	public Scheduler() {	
 	     DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 	     String todayAsString = df.format(Calendar.getInstance().getTime());
-		if(this.orarioAttuale == null)
-			this.ultimoScehduling = todayAsString;
-		this.ultimoScehduling = this.orarioAttuale;
-		this.orarioAttuale = todayAsString;
+		this.orarioScheduling = todayAsString;
+	}
+
+	public String getOrarioScheduling() {
+		return orarioScheduling;
 	}
 
 
-	public String getUltimoScehduling() {
-		return ultimoScehduling;
+	public int getId() {
+		return id;
 	}
-
-
-	public void setUltimoScehduling(String ultimoScehduling) {
-		this.ultimoScehduling = ultimoScehduling;
-	}
-
-
-	public String getOrarioAttuale() {
-		return orarioAttuale;
-	}
-
-
-	public void setOrarioAttuale(String orarioAttuale) {
-		this.orarioAttuale = orarioAttuale;
-	}
+	
 	
   
 }

@@ -29,6 +29,7 @@ public class SchedulerController {
 	@DeleteMapping("/events")
 	 @Scheduled(fixedRate = 600000) //10 minuti
 	    public void checkDatabase() {
+		    this.scheduler.save(new Scheduler());
 	        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 	        String todayAsString = df.format(Calendar.getInstance().getTime());
 	        
