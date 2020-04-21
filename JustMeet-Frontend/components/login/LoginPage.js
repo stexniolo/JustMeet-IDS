@@ -1,9 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View, Image, Button,Dimensions } from "react-native"
+import { StyleSheet, Text, View, TouchableOpacity,Dimensions,ImageBackground } from "react-native"
 
 export default class LoginPage extends React.Component {
     render(){
     return (
+      <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
         <View>
           <Text style={styles.title}>
             Benvenuto in JustMeet!
@@ -11,8 +12,11 @@ export default class LoginPage extends React.Component {
           <Text style={styles.instructions}>
             Con JustMeet puoi creare e prendere parte a gruppi e eventi vicino a te! 
           </Text>
-          <Button style={styles.btnLogin} title="Accedi con Google" onPress={() => this.props.signIn()} />
-        </View>
+          <TouchableOpacity style={styles.button}  onPress={() => this.props.signIn()} >
+            <Text style = {styles.text}>Accedi con Google </Text>
+          </TouchableOpacity> 
+       </View>
+       </ImageBackground>
       )
     }
 }
@@ -31,18 +35,27 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-    btnLogin: {
-      width: WIDTH - 55,
-      height: 45,
-      borderRadius: 45,
-      backgroundColor: '#448AFF',
-      justifyContent: 'center',
-      marginTop: 50,
+  button: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(142, 68, 173, 0.2)',
+    padding: 20,
+    marginTop: 20,
+    width: 300,
+    borderRadius:50
   },
   text: {
     color: 'black',
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold'
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
   }
 })

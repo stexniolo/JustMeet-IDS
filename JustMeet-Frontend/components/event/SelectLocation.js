@@ -1,11 +1,11 @@
 import React from 'react';
-import { TouchableOpacity, Text, Button, Platform, StyleSheet, View,TextInput ,Dimensions} from 'react-native';
+import { TouchableOpacity, Text, ImageBackground, StyleSheet, View,TextInput ,Dimensions} from 'react-native';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
 
 
-export default class ScegliLocation extends React.Component {
+export default class SelectLocation extends React.Component {
   constructor(props){
     super(props);
     this.state = { 
@@ -50,8 +50,8 @@ export default class ScegliLocation extends React.Component {
 
   render() {
     return (
-      <View >
-
+      <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
+      <View>
           <TextInput 
             style={styles.input}
             placeholder={'Nome Luogo'}
@@ -62,14 +62,14 @@ export default class ScegliLocation extends React.Component {
             />
             
           <TouchableOpacity
-            style={styles.buttonMio}
+            style={styles.button}
             onPress={this._attemptGeocodeAsync}
             title="Verifica">
             <Text>Verifica</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.buttonMio}
+            style={styles.button}
             disabled={!this.state.canGo}
             onPress = {() => this.props.navigation.navigate("Scegli Data",{
                 email: this.props.route.params.email,
@@ -80,6 +80,7 @@ export default class ScegliLocation extends React.Component {
             <Text style={styles.text}> Prosegui </Text>
           </TouchableOpacity>
       </View>
+      </ImageBackground>
     );
   }
 
@@ -101,10 +102,18 @@ const styles = StyleSheet.create({
     marginBottom: 25,
     marginTop: 100
   },
-  buttonMio: {
-    alignSelf:'center',
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    width: '100%',
+    height: '100%'
+  },
+  button: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(142, 68, 173, 0.2)',
     padding: 20,
     marginTop: 20,
     width: 300,

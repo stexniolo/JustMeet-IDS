@@ -1,5 +1,5 @@
 import React from 'react'
-import {View,StyleSheet,TouchableOpacity,Text} from 'react-native'
+import {View,StyleSheet,TouchableOpacity,Text,ImageBackground} from 'react-native'
 
 export default class DeleteCommento extends React.Component{
     componentDidMount(){
@@ -15,11 +15,13 @@ export default class DeleteCommento extends React.Component{
     render(){
         return(
             <View>
+              <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
                  <TouchableOpacity 
                 style={styles.button} 
                 onPress={() => {this.props.navigation.navigate("Home Page")}}>
                   <Text style = {styles.text}> Fatto </Text>
                 </TouchableOpacity>
+              </ImageBackground>
             </View>
         )
     }
@@ -34,5 +36,13 @@ button: {
     marginTop: 275,
     width: 300,
     borderRadius:50
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
   }
 })

@@ -17,7 +17,6 @@ export default class AdminScreen extends React.Component {
   
   return(
     <View style={styles.container}>
-      <ImageBackground source={require("../images/Prova.png")} style={styles.image}>
          <TouchableOpacity style={styles.button }
                onPress = {() => this.props.navigation.navigate("Lista User [Admin]")}>
               <Text style={styles.text}>Utenti</Text>
@@ -35,7 +34,6 @@ export default class AdminScreen extends React.Component {
                onPress = {() => this.props.navigation.navigate("Casella Segnalazioni [Admin]")}>
               <Text style={styles.text}>Controlla Segnalazioni</Text>
          </TouchableOpacity>
-    </ImageBackground>
      </View>
   )
   }

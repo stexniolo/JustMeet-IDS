@@ -43,7 +43,7 @@ export default class ProfiloUtente extends React.Component {
           </View>
       )}
       return(
-        <ImageBackground source={require("../images/Prova.png")} style={styles.image2}>
+        <ImageBackground source={require("../images/Sfondo.png")} style={styles.image2}>
 
         <View style = {styles.container}>
 
@@ -140,7 +140,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     width: 150,
     height: 150,
-    borderColor: "rgba(0,0,0,0.2)",
     borderWidth: 3,
     borderRadius: 150
   },

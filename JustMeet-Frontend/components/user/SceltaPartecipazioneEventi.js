@@ -1,10 +1,11 @@
 import React from "react";
-import {StyleSheet,View, Text,TouchableOpacity} from "react-native"; 
+import {StyleSheet,View, Text,TouchableOpacity,ImageBackground} from "react-native"; 
 
 
 export default class SceltaPartecipazioneEventi extends React.Component {
     render(){
         return(
+          <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
             <View style={styles.container}>
                 <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Partecipazione a Eventi',{
                     fullName: this.props.route.params.fullName,
@@ -19,6 +20,7 @@ export default class SceltaPartecipazioneEventi extends React.Component {
                      <Text style = {styles.text}> Mappa Eventi </Text>
                 </TouchableOpacity>
             </View>
+          </ImageBackground>
         )
     }
   

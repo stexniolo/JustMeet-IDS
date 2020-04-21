@@ -1,11 +1,12 @@
 import React from "react";
-import {StyleSheet,View, Text,TouchableOpacity} from "react-native"; 
+import {StyleSheet,View, Text,TouchableOpacity,ImageBackground} from "react-native"; 
 
 
 export default class SceltaEventiCreati extends React.Component {
     render(){
         return(
             <View style={styles.container}>
+               <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
                 <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Eventi Creati',{
                     email: this.props.route.params.email
                     })}>
@@ -17,6 +18,7 @@ export default class SceltaEventiCreati extends React.Component {
                     })}>
                      <Text style = {styles.text}> Mappa Eventi </Text>
                 </TouchableOpacity>
+                </ImageBackground>
             </View>
         )
     }

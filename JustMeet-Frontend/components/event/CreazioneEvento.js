@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text,StyleSheet,Dimensions,TextInput,TouchableOpacity,ScrollView} from 'react-native';
+import {Text,StyleSheet,Dimensions,TextInput,TouchableOpacity,ScrollView,ImageBackground} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 
@@ -122,8 +122,6 @@ handleNumPartecipanti = (text) => {
               <Text style={styles.warning}>N.B. Potrai continuare solo se compili tutto</Text>
               
               </ScrollView>
-              
-           
     );
 }
 }
@@ -140,7 +138,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'white',
       color: 'black',
       marginHorizontal: 25,
-      marginBottom: 25
+      marginBottom: 45
   },
   inputContainer: {
       marginBottom: 20,
@@ -155,10 +153,21 @@ const styles = StyleSheet.create({
     marginTop: 50,
 },
 button: {
+  alignSelf: 'center',
   alignItems: 'center',
   backgroundColor: '#DDDDDD',
   padding: 20,
-  marginTop: 20
+  marginTop: 20,
+  width: 300,
+  borderRadius:50
+},
+image: {
+  flex: 1,
+  resizeMode: "cover",
+  justifyContent: "center",
+  alignItems: 'center',
+  width: '100%',
+  height: '100%'
 },
 text: {
   color: 'black',
@@ -168,7 +177,7 @@ text: {
 },
 form: {
   marginTop: 20,
-  marginBottom: 20
+  marginBottom: 20,
 },
 warning:{
   fontSize: 15,

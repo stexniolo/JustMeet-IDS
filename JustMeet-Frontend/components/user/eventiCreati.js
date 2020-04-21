@@ -6,7 +6,7 @@ View,
 ActivityIndicator,
 FlatList,
 Text,
-TouchableOpacity
+TouchableOpacity,
 } from "react-native";
 import {Card,Icon} from 'react-native-elements' 
 
@@ -86,12 +86,14 @@ export default class EventiCreati extends React.Component {
             </View>
         )}
   return(
+  
   <FlatList
       data= {this.state.dataSource}
       ItemSeparatorComponent = {this.FlatListItemSeparator}
       renderItem= {item=> this.renderItem(item)}
       keyExtractor= {item=>item.id.toString()}
   />
+
   )}
   }
 
@@ -145,5 +147,13 @@ export default class EventiCreati extends React.Component {
       fontWeight: '600',
       paddingTop: 10,
       paddingBottom: 10 
+    },
+    image: {
+      flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center",
+      alignItems: 'center',
+      width: '100%',
+      height: '100%'
     }
   });

@@ -21,7 +21,7 @@ export default class HomePage extends React.Component {
     render(){
       return (
         <View style = {styles.container}>
-          <ImageBackground source={require("../images/Prova.png")} style={styles.image}>
+          <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
         <View style={styles.card}>
            <Text style={styles.titleText}>JustMeet</Text>
         </View>
@@ -81,6 +81,14 @@ image: {
   width: '100%',
   height: '100%'
 },
+button: {
+  alignItems: 'center',
+  backgroundColor: 'rgba(142, 68, 173, 0.2)',
+  padding: 20,
+  marginTop: 20,
+  width: 300,
+  borderRadius:50
+},
   card: {
     flex: 0.9,
     alignItems: 'center',
@@ -107,15 +115,6 @@ image: {
     backgroundColor: 'rgba(142, 68, 173, 0.5)',
     alignItems: "center",
     justifyContent: "center"
-  },
-  button: {
-    alignItems: 'center',
-    //backgroundColor: '#DDDDDD',
-    backgroundColor: 'rgba(142, 68, 173, 0.2)',
-    padding: 20,
-    marginTop: 20,
-    width: 300,
-    borderRadius:50
   },
   titleText: {
     fontSize: 40,

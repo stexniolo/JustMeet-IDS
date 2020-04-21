@@ -1,13 +1,9 @@
 import React from 'react'
 import {
-    Image,
-    Button,
-    Alert,
     Dimensions,
     StyleSheet,
     View,
-    ActivityIndicator,
-    FlatList,
+    ImageBackground,
     Text,
     TouchableOpacity
     } from "react-native";
@@ -15,22 +11,18 @@ import {
 export default class CercaEvento extends React.Component{
     render(){
         return(
-            
-            <View style={{ flexDirection: "row" }}>
-                
-            <View style={{ flex: 1 }}>
-                
-                <TouchableOpacity style={styles.buttonPartecipa }
+          <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
+                <TouchableOpacity style={styles.button }
                       onPress = {() => this.props.navigation.navigate('Input Topic',{
                         fullName: this.props.route.params.fullName,
                         email: this.props.route.params.email
                       })}>
                      <Text style={styles.text}>Topic</Text>
                 </TouchableOpacity>
-            </View>
+        
             <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
             <View style={{ flex: 1}}>
-                <TouchableOpacity style={styles.buttonPartecipa}
+                <TouchableOpacity style={styles.button}
                                    onPress = {() => this.props.navigation.navigate('Lista Eventi Più Vicini',{
                                     fullName: this.props.route.params.fullName,
                                     email: this.props.route.params.email
@@ -38,7 +30,7 @@ export default class CercaEvento extends React.Component{
                      <Text style={styles.text}>Location</Text>
                 </TouchableOpacity>
             </View>
-            </View>
+            </ImageBackground>
         )
     }
 }
@@ -46,6 +38,14 @@ export default class CercaEvento extends React.Component{
 const { width: WIDTH } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
+   },
     container: {
       flex: 1,
       backgroundColor: "#fff"
@@ -61,9 +61,13 @@ const styles = StyleSheet.create({
       margin: 5,
       backgroundColor: "#fff"
     },
-    buttonPartecipa: {
-      alignSelf: 'stretch',
-      backgroundColor: '#2980B9'
+    button: {
+      alignItems: 'center',
+      backgroundColor: 'rgba(142, 68, 173, 0.2)',
+      padding: 20,
+      marginTop: 20,
+      width: 300,
+      borderRadius:50
     },
     buttonInfo: {
       width: WIDTH - 55,
@@ -71,12 +75,10 @@ const styles = StyleSheet.create({
       alignItems: 'flex-end',
     },
     text: {
-      alignSelf: 'center',
-      color: '#ffffff',
-      fontSize: 16,
-      fontWeight: '600',
-      paddingTop: 10,
-      paddingBottom: 10 
+      color: 'black',
+      textAlign: 'center',
+      fontSize: 20,
+      fontWeight: 'bold'
     },
     instructions: {
       fontSize: 16,
@@ -84,5 +86,13 @@ const styles = StyleSheet.create({
       color: '#333333',
       marginBottom: 5,
       marginTop: 250
+    },
+    image: {
+      flex: 1,
+      resizeMode: "cover",
+      justifyContent: "center",
+      alignItems: 'center',
+      width: '100%',
+      height: '100%'
     }
   });

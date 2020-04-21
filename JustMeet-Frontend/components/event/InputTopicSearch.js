@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, Text,Dimensions,StyleSheet} from 'react-native';
+import { View, Text,Dimensions,StyleSheet,TouchableOpacity,ImageBackground} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class InputTopicSearch extends React.Component{
     constructor(props){
@@ -14,6 +13,7 @@ export default class InputTopicSearch extends React.Component{
 
     render(){
         return(
+          <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
             <View>
             <Text style={styles.text}>
             Scegli Categoria da cercare
@@ -41,6 +41,7 @@ export default class InputTopicSearch extends React.Component{
                 <Text style = {styles.text}> Cerca la categoria "{this.state.topic}" </Text>
               </TouchableOpacity>
             </View>
+            </ImageBackground>
         )
     }
 }
@@ -74,9 +75,19 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
+    backgroundColor: 'rgba(142, 68, 173, 0.2)',
     padding: 20,
-    marginTop: 20
+    marginTop: 20,
+    width: 300,
+    borderRadius:50
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
   },
   text: {
     color: 'black',

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button,View} from "react-native";
+import {TouchableOpacity,View,Text,ImageBackground,StyleSheet} from "react-native";
 
 export default class PubblicaCommento extends React.Component {
     componentDidMount(){
@@ -19,13 +19,43 @@ export default class PubblicaCommento extends React.Component {
 
 render(){
     return (
+      <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
         <View>
-             <Button
-                title="Commento Pubblicato!"
-                onPress={() =>{this.props.navigation.navigate("Home Page")}}
-            />
+             <TouchableOpacity 
+                style = {styles.button}
+                onPress={() =>{this.props.navigation.navigate("Home Page")}}>
+                <Text style = {styles.text}>Commento Pubblicato!</Text>
+              </TouchableOpacity>
         </View>
+      </ImageBackground>
     )
 
 }
 }
+
+
+const styles = StyleSheet.create({ 
+image: {
+  flex: 1,
+  resizeMode: "cover",
+  justifyContent: "center",
+  alignItems: 'center',
+  width: '100%',
+  height: '100%'
+},
+  text: {
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  button: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(142, 68, 173, 0.2)',
+    padding: 20,
+    marginTop: 20,
+    width: 300,
+    borderRadius:50
+  }
+});

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View,Button,Text} from 'react-native';
+import { View,Button,TouchableOpacity,Image,StyleSheet,Text,ImageBackground} from 'react-native';
 
 export default class PostPartecipante extends React.Component {
 
@@ -28,12 +28,40 @@ export default class PostPartecipante extends React.Component {
   
   render(){
         return (
+          <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
             <View>
-                 <Button
-                    title="Prenotazione fatta!"
-                    onPress={() => this.props.navigation.navigate("Home Page")}
-        />
+                 <TouchableOpacity 
+                    style = {styles.button}
+                    onPress={() => this.props.navigation.navigate("Home Page")}>
+                      <Text style = {styles.text}>Prenotazione fatta!</Text>
+                  </TouchableOpacity>
             </View>
+            </ImageBackground>
         )  
     }
 }
+
+const styles = StyleSheet.create({
+ image: {
+  flex: 1,
+  resizeMode: "cover",
+  justifyContent: "center",
+  alignItems: 'center',
+  width: '100%',
+  height: '100%'
+ },
+  text: {
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: 'rgba(142, 68, 173, 0.2)',
+    padding: 20,
+    marginTop: 20,
+    width: 300,
+    borderRadius:50
+  }
+});

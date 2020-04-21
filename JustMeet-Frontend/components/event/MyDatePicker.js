@@ -1,6 +1,6 @@
 import React from 'react'
 import RNPickerSelect from 'react-native-picker-select';
-import { Button,TouchableOpacity,View,Text, Alert,StyleSheet } from 'react-native';
+import { Button,TouchableOpacity,View,Text, Alert,StyleSheet,ImageBackground } from 'react-native';
  
 
 const scegliMese = new String("Scegli il mese");
@@ -24,6 +24,7 @@ export default class MyDatePicker extends React.Component {
 
   render(){
     return (
+      <ImageBackground source={require("../images/Sfondo.png")} style={styles.image}>
       <View style={styles.form}>
         <Text style = {styles.text2}>
           Scegi Giorno
@@ -153,6 +154,7 @@ export default class MyDatePicker extends React.Component {
 
       <Text style={styles.warning}>N.B.Potrai continuare solo se compili tutto</Text>
       </View>
+      </ImageBackground>
     )
   };
 }
@@ -162,6 +164,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'black',
     textAlign: 'center',
+    marginBottom: 10,
+    marginTop: 10
   },
   text: {
     color: 'black',
@@ -170,21 +174,29 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   form: {
-    marginBottom: 20,
-    marginTop: 30
-  },
-  button: {
-    alignSelf: 'center',
-    alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 20,
-    marginTop: 20,
-    width: 300,
-    borderRadius:50,
+    marginBottom: 30,
+    marginTop: 30,
+    
   },
   warning:{
     fontSize: 15,
-    color: 'red',
+    color: 'rgba(142, 68, 173, 0.6)',
     textAlign: 'center',
-  }
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: 'rgba(142, 68, 173, 0.2)',
+    padding: 20,
+    marginTop: 20,
+    width: 300,
+    borderRadius:50
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
+  },
 })

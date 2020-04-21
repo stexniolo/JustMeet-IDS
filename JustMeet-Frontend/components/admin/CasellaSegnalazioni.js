@@ -14,7 +14,6 @@ export default class CasellaSegnalazioni extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-            <ImageBackground source={require("../images/Prova.png")} style={styles.image}>
                <TouchableOpacity style={styles.button }
                      onPress = {() => this.openMail()}>
                     <Text style={styles.text}>Casella Segnalazioni</Text>
@@ -26,8 +25,6 @@ export default class CasellaSegnalazioni extends React.Component {
                                   onPress = {() => this.handleEmail()}>
                     <Text style={styles.text}>Invia Email</Text>
                </TouchableOpacity>
-        
-          </ImageBackground>
            </View>
         )
     }
