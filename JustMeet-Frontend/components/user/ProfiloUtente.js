@@ -9,7 +9,8 @@ import {
     ActivityIndicator,
     FlatList,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    Icon
 } from "react-native"
 
 export default class ProfiloUtente extends React.Component {
@@ -43,8 +44,14 @@ export default class ProfiloUtente extends React.Component {
       )}
       return(
         <ImageBackground source={require("../images/Prova.png")} style={styles.image2}>
+
         <View style = {styles.container}>
 
+        <TouchableOpacity style = {styles.logout}
+          onPress = {() => this.props.navigation.replace("Benvenuto")}
+        >
+          <Image style={styles.image3} source={require("../images/close.png")}/>
+        </TouchableOpacity>
 
         <TouchableOpacity 
           onPress = {() => Alert.alert("Le mie informazioni personali",
@@ -145,6 +152,13 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
+  image3: {
+    marginTop: 10,
+    width: 25,
+    height: 25,
+    borderRadius: 150,
+    marginEnd: 300
+  },
   text: {
     color: 'black',
     textAlign: 'center',
@@ -163,5 +177,8 @@ const styles = StyleSheet.create({
   button2:{
     alignSelf: 'stretch',
     backgroundColor: '#2980B9'
+  },
+  logout: {
+    alignContent: 'flex-start'
   }
 });
