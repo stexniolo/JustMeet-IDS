@@ -131,10 +131,8 @@ public class EventController {
 	        Event event = eventRepository.findByid(eventId);
 	        event.setTitle(body.get("title"));
 	        event.setDescription(body.get("description"));
-	        String data = body.get("date");
-	        event.setDate(data);
-	        event.getLocation().setLatitudine(Double.parseDouble(body.get("latitude")));
-	        event.getLocation().setLongitudine(Double.parseDouble(body.get("longitude")));
+	        event.getTopic().setArgomento(Integer.parseInt(body.get("topic")));
+	        event.setOrganizzatore(body.get("organizzatore"));
 	        String numPartecipanti = body.get("numPartecipanti");
 	        event.setNumPartecipanti(Integer.parseInt(numPartecipanti));
 	        return eventRepository.save(event);

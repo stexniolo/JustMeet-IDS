@@ -1,19 +1,20 @@
 import React from 'react'
-import { View, Text,Button,StyleSheet,Dimensions,TextInput,TouchableOpacity} from 'react-native';
+import {Text,StyleSheet,Dimensions,TextInput,TouchableOpacity,ScrollView} from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 
-export default class ModificaEvento extends React.Component {
+
+export default class CreazioneEvento extends React.Component {
   constructor(props){
     super(props);
     this.state = { 
       title: '',
       description: '',
-      date: '',
-      location: '',
-      orario: '',
       organizzatore: '',
-      numPartecipanti: ''
+      numPartecipanti: '',
+      topic: ''
     };
   }
+
 
  handleTitle = (text) => {
     this.setState({ title: text })
@@ -22,18 +23,6 @@ export default class ModificaEvento extends React.Component {
  handleDescription = (text) => {
    this.setState({description: text})
  }
-
- handleDate = (text) => {
-  this.setState({date: text})
-}
-
-handleLocation = (text) => {
-  this.setState({location: text})
-}
-
-handleOrario = (text) => {
-  this.setState({orario: text})
-}
 
 handleOrganizzatore = (text) => {
   this.setState({organizzatore: text})
@@ -45,7 +34,8 @@ handleNumPartecipanti = (text) => {
 
   render() {
     return (
-            <View style={styles.inputContainer}>
+            <ScrollView style={styles.inputContainer}>
+
                 <TextInput 
                     style={styles.input}
                     placeholder={'Nome'}
@@ -62,30 +52,7 @@ handleNumPartecipanti = (text) => {
                     value = {this.state.description}
                     onChangeText = {this.handleDescription}
                 />
-                <TextInput 
-                    style={styles.input}
-                    placeholder={'Data'}
-                    placeholderTextColor={'grey'}
-                    underlineColorAndroid='transparent' 
-                    value = {this.state.date}
-                    onChangeText = {this.handleDate}
-                />      
-                <TextInput 
-                    style={styles.input}
-                    placeholder={'Luogo'}
-                    placeholderTextColor={'grey'}
-                    underlineColorAndroid='transparent' 
-                    value = {this.state.location}
-                    onChangeText = {this.handleLocation}
-                />
-                  <TextInput 
-                    style={styles.input}
-                    placeholder={'Orario'}
-                    placeholderTextColor={'grey'}
-                    underlineColorAndroid='transparent' 
-                    value = {this.state.orario}
-                    onChangeText = {this.handleOrario}
-                />
+              
 
                 <TextInput 
                     style={styles.input}
@@ -103,25 +70,44 @@ handleNumPartecipanti = (text) => {
                     underlineColorAndroid='transparent' 
                     value = {this.state.numPartecipanti}
                     onChangeText = {this.handleNumPartecipanti}
-                />       
+                />     
+
+          <Text style={styles.text}>
+            Scegli Categoria
+          </Text>
+                  <RNPickerSelect
+                    style={styles.form}
+                    onValueChange={(value) => this.setState({topic: value})}
+                    items={[
+                        { label: 'Studio', value: '1' },
+                        { label: 'Amici', value: '2' },
+                        { label: 'Sport', value: '3' },
+                        { label: 'Party', value: '4' },
+                        { label: 'Generale', value: '5' },
+                          ]}
+                      />
+
  
              <TouchableOpacity
+             disabled={(this.state.title == '' || this.state.description == '' || this.state.organizzatore == ''
+             || this.state.numPartecipanti == '' || this.state.topic == '')}
               style={styles.button}
               onPress = {() => 
                 this.props.navigation.navigate('PutEvento',{
+                  id: this.props.route.params.idEvento,
                   title: this.state.title,
                   description: this.state.description,
-                  date: this.state.date,
-                  location: this.state.location,
-                  orario: this.state.orario,
+                  topic: this.state.topic,
                   organizzatore: this.state.organizzatore,
                   numPartecipanti: this.state.numPartecipanti
                 })
             } >
-                <Text style = {styles.text}> Pubblica </Text>
+                <Text style = {styles.text}> Modifica </Text>
               </TouchableOpacity>
+
+              <Text style={styles.warning}>N.B. Potrai continuare solo se compili tutto</Text>
               
-              </View>
+              </ScrollView>
               
            
     );
@@ -165,5 +151,14 @@ text: {
   textAlign: 'center',
   fontSize: 20,
   fontWeight: 'bold'
+},
+form: {
+  marginTop: 20,
+  marginBottom: 20
+},
+warning:{
+  fontSize: 15,
+  color: 'red',
+  textAlign: 'center',
 }
 })

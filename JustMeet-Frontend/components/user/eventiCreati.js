@@ -1,7 +1,5 @@
 import React from "react";
 import {
-Button,
-Alert,
 Dimensions,
 StyleSheet,
 View,
@@ -57,10 +55,7 @@ export default class EventiCreati extends React.Component {
   <View style={{ flexDirection: "row" }}>
      <View style={{ flex: 1 }}>
          <TouchableOpacity style={styles.button}
-               onPress = {() => this.props.navigation.navigate('Modifica Evento',{
-                          idEvento : data.item.id,
-                          fullName: this.state.participantName,
-                          email: this.props.route.params.email})}>
+               onPress = {() => this.props.navigation.navigate('Modifica Evento',{idEvento : data.item.id})}>
               <Text style={styles.text}>Modifica</Text>
          </TouchableOpacity>
      </View>
@@ -68,9 +63,7 @@ export default class EventiCreati extends React.Component {
      <View style={{ flex: 1}}>
          <TouchableOpacity style={styles.button}
                              onPress = {() => this.props.navigation.navigate('Annulla Evento',{
-                                idEvento : data.item.id,
-                                fullName: this.state.participantName,
-                                email: this.props.route.params.email})}>
+                               idEvento : data.item.id})}>
               <Text style={styles.text}>Annulla</Text>
          </TouchableOpacity>
      </View>

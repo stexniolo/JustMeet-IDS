@@ -15,8 +15,8 @@ import PostEvento from '././components/event/PostEvento.js'
 import ProfiloUtente from '././components/user/ProfiloUtente.js'
 import PostPartecipante from '././components/event/PostPartecipante.js'
 import AdminScreen from '././components/admin/AdminScreen.js';
-import partecipazioneEventi from '././components/user/partecipazioneEventi.js';
-import eventiCreati from '././components/user/eventiCreati.js';
+import PartecipazioneEventi from '././components/user/PartecipazioneEventi.js';
+import EventiCreati from '././components/user/EventiCreati.js';
 import PutEvento from '././components/event/PutEvento.js'
 import ModificaEvento from '././components/event/ModificaEvento.js';
 import AnnullaEvento from '././components/event/AnnullaEvento.js';
@@ -44,6 +44,10 @@ import ModificaCommento from '././components/user/ModificaCommento.js';
 import PutCommento from '././components/user/PutCommento.js';
 import DeleteCommento from '././components/user/DeleteCommento.js';
 import CasellaSegnalazioni from '././components/admin/CasellaSegnalazioni.js';
+import EventiCreatiMappa from '././components/user/EventiCreatiMappa.js';
+import SceltaEventiCreati from '././components/user/SceltaEventiCreati.js';
+import PartecipazioneMappa from '././components/user/PartecipazioneMappa.js';
+import SceltaPartecipazioneEventi from '././components/user/SceltaPartecipazioneEventi.js';
 
 /*
 const Stack = createBottomStackNavigator();
@@ -69,6 +73,10 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName = "Benvenuto">
+        <Stack.Screen name = "Partecipazioni [MAPPA]" component = {PartecipazioneMappa}/>
+        <Stack.Screen name = "Scelta Partecipazione Eventi" component = {SceltaPartecipazioneEventi}/>
+        <Stack.Screen name = "Scelta Eventi Creati" component = {SceltaEventiCreati}/>
+        <Stack.Screen name = "Eventi Creati [MAPPA]" component = {EventiCreatiMappa}/>
         <Stack.Screen name = "Cancella Commento" component = {DeleteCommento}/>
         <Stack.Screen name = "PutCommento" component = {PutCommento}/>
         <Stack.Screen name = "Modifica Commento" component = {ModificaCommento}/>
@@ -96,8 +104,8 @@ function App() {
         <Stack.Screen name = "Annulla Evento" component={AnnullaEvento} />
         <Stack.Screen name = "Modifica Evento" component={ModificaEvento} />
         <Stack.Screen name = "PutEvento" component={PutEvento} />
-        <Stack.Screen name = "Eventi Creati" component={eventiCreati} />
-        <Stack.Screen name = "Partecipazione a Eventi" component={partecipazioneEventi} />
+        <Stack.Screen name = "Eventi Creati" component={EventiCreati} />
+        <Stack.Screen name = "Partecipazione a Eventi" component={PartecipazioneEventi} />
         <Stack.Screen name = "Admin" component={AdminScreen} />
         <Stack.Screen name = "PostPartecipante" component={PostPartecipante} />
         <Stack.Screen name = "Profilo Utente" component={ProfiloUtente} />

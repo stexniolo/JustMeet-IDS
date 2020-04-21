@@ -42,26 +42,42 @@ export default class ProfiloUtente extends React.Component {
           </View>
       )}
       return(
-        <View style = {styles.container}>
         <ImageBackground source={require("../images/Prova.png")} style={styles.image2}>
+        <View style = {styles.container}>
+
+
+        <TouchableOpacity 
+          onPress = {() => Alert.alert("Le mie informazioni personali",
+            "Nome: "+this.state.dataSource.nome+"\n\n"+
+            "Cognome: "+this.state.dataSource.cognome+"\n\n"+
+            "Mail: "+this.state.dataSource.email)}
+          
+        >
+          <Image style={styles.image} source={{uri: this.state.dataSource.photoUrl}}/>
+        </TouchableOpacity>
+
+        {/*
         <View style={styles.view}>
-          <Text style={styles.header}>Nome: {this.state.dataSource.nome}</Text>
-          <Text style={styles.header}>Cognome: {this.state.dataSource.cognome}</Text>
-          <Text style={styles.header}>Email: {this.state.dataSource.email}</Text>
           <Image style={styles.image} source={{uri: this.state.dataSource.photoUrl}} />  
         </View>
+        */}
 
-      <TouchableOpacity style={styles.button}
-                        onPress={() => this.props.navigation.navigate('Email')}>
-          <Text style = {styles.text}> Segnala un problema </Text>
-      </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button}
-                        onPress={() => this.props.navigation.navigate('Elimina Utente',{
-                          email: this.state.dataSource.email
-                        })}>
-          <Text style = {styles.text}> Elimina il mio account </Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.button}
+               onPress = {() => this.props.navigation.navigate('Scelta Eventi Creati',{ 
+                email: this.state.dataSource.email
+               })}>
+              <Text style={styles.text}>Eventi Creati</Text>
+         </TouchableOpacity>
+
+
+         <TouchableOpacity style={styles.button}
+           onPress = {() => this.props.navigation.navigate('Scelta Partecipazione Eventi',{
+            fullName: this.state.dataSource.fullName, 
+            email: this.state.dataSource.email
+           })}>
+              <Text style={styles.text}>Partecipazioni</Text>
+         </TouchableOpacity>
 
       <TouchableOpacity style={styles.button}
                         onPress={() => this.props.navigation.navigate('Commenti Pubblicati',{
@@ -70,28 +86,21 @@ export default class ProfiloUtente extends React.Component {
           <Text style = {styles.text}> I miei Commenti </Text>
       </TouchableOpacity>
 
-        <View style={{ flexDirection: "row" }}>
-            <View style={{ flex: 1 }}>
-              <TouchableOpacity style={styles.button}
-               onPress = {() => this.props.navigation.navigate('Eventi Creati',{
-                fullName: this.state.dataSource.fullName, 
-                email: this.state.dataSource.email
-               })}>
-              <Text style={styles.text}>Eventi Creati</Text>
-         </TouchableOpacity>
-     </View>
-     <View style={{ flex: 1}}>
-         <TouchableOpacity style={styles.button}
-           onPress = {() => this.props.navigation.navigate('Partecipazione a Eventi',{
-            fullName: this.state.dataSource.fullName, 
-            email: this.state.dataSource.email
-           })}>
-              <Text style={styles.text}>Partecipazioni</Text>
-         </TouchableOpacity>
-     </View>
+       
+            <TouchableOpacity style={styles.button}
+                        onPress={() => this.props.navigation.navigate('Email')}>
+          <Text style = {styles.text}> Segnala un problema </Text>
+      </TouchableOpacity>
+  
+     <TouchableOpacity style={styles.button}
+                        onPress={() => this.props.navigation.navigate('Elimina Utente',{
+                          email: this.state.dataSource.email
+                        })}>
+          <Text style = {styles.text}> Elimina il mio account </Text>
+      </TouchableOpacity>
+     
      </View>
      </ImageBackground> 
-     </View>
       )}
     }
    
@@ -112,8 +121,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container: {
-    flex: 1,
-    backgroundColor: 'rgba(142, 68, 173, 0.5)',
+    flex: 0.95,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -149,7 +157,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(142, 68, 173, 0.2)',
     padding: 20,
     marginTop: 20,
-    borderRadius:70
+    borderRadius:70,
+    width: 280
   },
   button2:{
     alignSelf: 'stretch',
