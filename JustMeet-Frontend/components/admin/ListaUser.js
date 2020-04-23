@@ -43,7 +43,7 @@ export default class ListaEventi extends React.Component {
   );
   }
   renderItem=(data)=>
-<Card
+  <Card
   title={data.item.fullName}
   image= {{uri: data.item.photoUrl}}
   >

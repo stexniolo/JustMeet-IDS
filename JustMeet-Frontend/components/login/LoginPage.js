@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity,Dimensions,ImageBackground } from "react-native"
+import { StyleSheet, Text, View, TouchableOpacity,Dimensions,ImageBackground, Alert } from "react-native"
 
 export default class LoginPage extends React.Component {
     render(){
@@ -9,12 +9,25 @@ export default class LoginPage extends React.Component {
           <Text style={styles.title}>
             Benvenuto in JustMeet!
           </Text>
-          <Text style={styles.instructions}>
-            Con JustMeet puoi creare e prendere parte a gruppi e eventi vicino a te! 
-          </Text>
+
+          <TouchableOpacity style = {styles.button}
+            onPress = {() => Alert.alert("Informativa","Con JustMeet puoi creare e prendere parte a eventi vicino "+
+            "a te. L'idea è quella di semplificare il processo organizzativo di un evento di qualsiasi dimensione e tipologia "+
+            "con pochi step "+
+            "e in maniera molto semplice!\n\n"+
+            "Dati raccolti\n\n"+ 
+            "Profilo: email e foto Google, ai soli fini dell'applicazione\n\n"+
+            "Tracciamento posizione: per migliorare l'esperienza di navigazione sulla mappa\n\n"+
+            "Info di contatto:\n stefano.perniola@studenti.unicam.it\n\n"+
+            "La tutela della leggitimità degli eventi è importante, un Moderatore sarà incaricato di rimuovere eventi illeggittimi o utenti che non rispettano le buone norme di comportamento.\n\n"+
+            "Per andare avanti bisogna effettuare la login con Google")}>
+            <Text style={styles.text}>Informativa App</Text>
+          </TouchableOpacity>
+
           <TouchableOpacity style={styles.button}  onPress={() => this.props.signIn()} >
             <Text style = {styles.text}>Accedi con Google </Text>
-          </TouchableOpacity> 
+          </TouchableOpacity>
+
        </View>
        </ImageBackground>
       )

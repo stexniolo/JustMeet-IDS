@@ -30,14 +30,25 @@ export default class AdminScreen extends React.Component {
          </TouchableOpacity>
   
    
-         <TouchableOpacity style={styles.button }
-               onPress = {() => this.props.navigation.navigate("Casella Segnalazioni [Admin]")}>
-              <Text style={styles.text}>Controlla Segnalazioni</Text>
-         </TouchableOpacity>
+         <TouchableOpacity style={styles.button}
+                                  onPress = {() => this.handleEmail()}>
+                    <Text style={styles.text}>Invia Email</Text>
+          </TouchableOpacity>
      </View>
   )
   }
 
+}
+
+handleEmail = () => {
+  const to = [] // string or array of email addresses
+  email(to, {
+      // Optional additional arguments
+      cc: [], // string or array of email addresses
+      bcc: '', // string or array of email addresses
+      subject: '',
+      body: ''
+  }).catch(console.error)
 }
 
   const { width: WIDTH } = Dimensions.get('window')
@@ -51,8 +62,7 @@ export default class AdminScreen extends React.Component {
         button: {
           alignSelf: 'center',
           alignItems: 'center',
-          //backgroundColor: '#DDDDDD',
-          backgroundColor: 'rgba(142, 68, 173, 0.2)',
+          backgroundColor: '#DDDDDD',
           padding: 20,
           marginTop: 20,
           width: 300,
@@ -60,9 +70,9 @@ export default class AdminScreen extends React.Component {
         },
         text: {
           alignSelf: 'center',
-          color: '#ffffff',
+          color: 'black',
           fontSize: 16,
-          fontWeight: '600',
+          fontWeight: 'bold',
           paddingTop: 10,
           paddingBottom: 10 
         },

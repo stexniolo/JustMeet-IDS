@@ -194,11 +194,11 @@ public class UserController {
 	  }
 	  
 	  @PutMapping("/users/{email}/comments/{id}")
-	  public void updateCommento(@PathVariable String email,@PathVariable String id,@RequestBody Map<String,String> commento) {
+	  public void updateCommento(@PathVariable String email,@PathVariable String id,@RequestBody Map<String,String> body) {
 		  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");  
 		  LocalDateTime now = LocalDateTime.now();
 		  Commento c = this.commentoRepository.findById(Integer.parseInt(id));
-		  c.setBody(commento.get("body"));
+		  c.setBody(body.get("body"));
 		  c.setOrarioPubblicazione(dtf.format(now));
 		  this.commentoRepository.save(c);
 	  }

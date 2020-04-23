@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text, Image, StyleSheet ,ImageBackground,Dimensions} from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { View, Text, Image, StyleSheet ,ImageBackground,Dimensions,TouchableOpacity} from 'react-native'
 
 
 const { width: WIDTH } = Dimensions.get('window')

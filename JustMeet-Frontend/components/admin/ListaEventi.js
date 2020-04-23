@@ -63,9 +63,9 @@ export default class ListaEventi extends React.Component {
      <View style={{ flex: 1}}>
          <TouchableOpacity style={styles.buttonPartecipa}
                             onPress = {() => Alert.alert("Info Evento",
-                                              "Dove: "+data.item.location.latitudine+"\n\n"+
+                                              "Dove: "+data.item.location.nome+"\n\n"+
                                               "Quando: "+data.item.date+"\n\n"+
-                                              "Orario: "+data.item.orario+"\n\n"+
+                                              "Topic: "+data.item.topic+"\n\n"+
                                               "Partecipanti: "+data.item.participants+"\n\n"+
                                               "Organizzatore: "+data.item.organizzatore)}>
               <Text style={styles.text}>Info Evento</Text>
