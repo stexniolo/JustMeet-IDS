@@ -43,7 +43,6 @@ import CommentiPubblicati from '././components/user/CommentiPubblicati.js';
 import ModificaCommento from '././components/user/ModificaCommento.js';
 import PutCommento from '././components/user/PutCommento.js';
 import DeleteCommento from '././components/user/DeleteCommento.js';
-import CasellaSegnalazioni from '././components/admin/CasellaSegnalazioni.js';
 import EventiCreatiMappa from '././components/user/EventiCreatiMappa.js';
 import SceltaEventiCreati from '././components/user/SceltaEventiCreati.js';
 import PartecipazioneMappa from '././components/user/PartecipazioneMappa.js';
@@ -93,7 +92,6 @@ function App() {
         <Stack.Screen name = "Cerca Evento" component = {CercaEvento}/>
         <Stack.Screen name = "Scegli Luogo" component={SelectLocation}/> 
         <Stack.Screen name = "Scegli Data" component={MyDatePicker} />
-        <Stack.Screen name = "Casella Segnalazioni [Admin]" component = {CasellaSegnalazioni}/>
         <Stack.Screen name = "Lista User [Admin]" component={ListaUser} />
         <Stack.Screen name = "Lista Eventi [Admin]" component={ListaEventi} />
         <Stack.Screen name = "Ammonisci Utente [Admin]" component={DeleteUser} />

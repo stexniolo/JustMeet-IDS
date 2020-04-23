@@ -5,13 +5,22 @@ View,
 Text,
 TouchableOpacity,
 Dimensions,
-ImageBackground
+ImageBackgrounds
 } from "react-native";
+import email from 'react-native-email'
+
 export default class AdminScreen extends React.Component {
 
-  
-
-  
+  handleEmail = () => {
+    const to = [] // string or array of email addresses
+    email(to, {
+        // Optional additional arguments
+        cc: [], // string or array of email addresses
+        bcc: '', // string or array of email addresses
+        subject: '',
+        body: ''
+    }).catch(console.error)
+  }
 
   render(){
   
@@ -40,16 +49,6 @@ export default class AdminScreen extends React.Component {
 
 }
 
-handleEmail = () => {
-  const to = [] // string or array of email addresses
-  email(to, {
-      // Optional additional arguments
-      cc: [], // string or array of email addresses
-      bcc: '', // string or array of email addresses
-      subject: '',
-      body: ''
-  }).catch(console.error)
-}
 
   const { width: WIDTH } = Dimensions.get('window')
 
