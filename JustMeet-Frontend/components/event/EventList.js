@@ -49,6 +49,7 @@ export default class EventList extends React.Component {
   renderItem=(data)=> 
     
   <Card
+  style={styles.card}
   title={data.item.title}
   image={imageMap[data.item.topic]}
   >
@@ -70,7 +71,7 @@ export default class EventList extends React.Component {
      </View>
      <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
      <View style={{ flex: 1}}>
-         <TouchableOpacity style={styles.buttonPartecipa}
+         <TouchableOpacity style={styles.buttonInfo}
                             onPress = {() => this.props.navigation.navigate("Info Evento",{
                               email: this.state.email,
                               id: data.item.id,
@@ -84,7 +85,7 @@ export default class EventList extends React.Component {
                               photo: this.props.route.params.photo,
                               title: data.item.title
                             })}>
-              <Text style={styles.text}>Info</Text>
+              <Text style={styles.text2}>Info</Text>
          </TouchableOpacity>
      </View>
      </View>
@@ -109,7 +110,6 @@ export default class EventList extends React.Component {
   return(
   <FlatList
       data= {this.state.dataSource}
-      ItemSeparatorComponent = {this.FlatListItemSeparator}
       renderItem= {item=> this.renderItem(item)}
       keyExtractor= {item=>item.id.toString()}
   />
@@ -144,16 +144,25 @@ export default class EventList extends React.Component {
     },
     buttonPartecipa: {
       alignSelf: 'stretch',
-      backgroundColor: '#2980B9'
+      backgroundColor: 'rgba(41, 128, 185,1)',
+      borderRadius: 20
     },
     buttonInfo: {
-      width: WIDTH - 55,
-      backgroundColor: '#448AFF',
-      alignItems: 'flex-end',
+      alignSelf: 'stretch',
+      backgroundColor: 'rgba(218, 223, 225, 1)',
+      borderRadius: 20
     },
     text: {
       alignSelf: 'center',
       color: '#ffffff',
+      fontSize: 16,
+      fontWeight: '600',
+      paddingTop: 10,
+      paddingBottom: 10 
+    },
+    text2: {
+      alignSelf: 'center',
+      color: 'black',
       fontSize: 16,
       fontWeight: '600',
       paddingTop: 10,

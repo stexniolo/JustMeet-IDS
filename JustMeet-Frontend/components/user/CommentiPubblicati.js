@@ -130,15 +130,17 @@ export default class CommentiPubblicati extends React.Component {
       marginTop: 250
     },
     buttonModifica: {
-        alignSelf: 'stretch',
+        alignSelf: 'center',
         backgroundColor: '#DDDDDD',
         borderRadius: 50,
-        marginBottom: 10
+        marginBottom: 10,
+        width: 150
       },
       buttonCancella: {
-        alignSelf: 'stretch',
+        alignSelf: 'center',
         backgroundColor: 'rgba(236, 100, 75, 1)',
         borderRadius: 50,
-        marginBottom: 10
+        marginBottom: 10,
+        width:150
       }
   });

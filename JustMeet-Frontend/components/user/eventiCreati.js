@@ -61,10 +61,10 @@ export default class EventiCreati extends React.Component {
      </View>
      <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
      <View style={{ flex: 1}}>
-         <TouchableOpacity style={styles.button}
+         <TouchableOpacity style={styles.buttonInfo}
                              onPress = {() => this.props.navigation.navigate('Annulla Evento',{
                                idEvento : data.item.id})}>
-              <Text style={styles.text}>Annulla</Text>
+              <Text style={styles.text2}>Annulla</Text>
          </TouchableOpacity>
      </View>
      </View>
@@ -107,20 +107,7 @@ export default class EventiCreati extends React.Component {
 
   const { width: WIDTH } = Dimensions.get('window')
 
-
   const styles = StyleSheet.create({
-    title: {
-        fontSize: 31,
-        textAlign: 'center',
-        margin: 10,
-      },
-      instructions: {
-        fontSize: 16,
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-        marginTop: 250
-      },
     container: {
       flex: 1,
       backgroundColor: "#fff"
@@ -138,7 +125,13 @@ export default class EventiCreati extends React.Component {
     },
     button: {
       alignSelf: 'stretch',
-      backgroundColor: '#2980B9'
+      backgroundColor: 'rgba(41, 128, 185,1)',
+      borderRadius: 20
+    },
+    buttonInfo: {
+      alignSelf: 'stretch',
+      backgroundColor: 'rgba(218, 223, 225, 1)',
+      borderRadius: 20
     },
     text: {
       alignSelf: 'center',
@@ -148,12 +141,19 @@ export default class EventiCreati extends React.Component {
       paddingTop: 10,
       paddingBottom: 10 
     },
-    image: {
-      flex: 1,
-      resizeMode: "cover",
-      justifyContent: "center",
-      alignItems: 'center',
-      width: '100%',
-      height: '100%'
+    text2: {
+      alignSelf: 'center',
+      color: 'black',
+      fontSize: 16,
+      fontWeight: '600',
+      paddingTop: 10,
+      paddingBottom: 10 
+    },
+    instructions: {
+      fontSize: 16,
+      textAlign: 'center',
+      color: '#333333',
+      marginBottom: 5,
+      marginTop: 250
     }
-  });
+  });;

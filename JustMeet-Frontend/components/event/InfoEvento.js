@@ -1,5 +1,6 @@
 import React from 'react'
 import {
+    Alert,
     StyleSheet,
     View,
     ImageBackground,
@@ -18,9 +19,13 @@ export default class InfoEvento extends React.Component{
                     Data : {"\n"}{this.props.route.params.date}{"\n"}{"\n"}
                     organizzatore:{"\n"} {this.props.route.params.organizzatore}{"\n"}{"\n"}
                     topic: {"\n"}{this.props.route.params.topic}{"\n"}{"\n"}
-                    partecipanti:{"\n"} {JSON.stringify(this.props.route.params.participants)}{"\n"}{"\n"}
                     adesioni attuali: {"\n"}{this.props.route.params.adesioniAttuali}{"\n"}{"\n"}
                 </Text>
+
+                <TouchableOpacity style={styles.button}
+                              onPress = {() => Alert.alert("Partecipanti",JSON.stringify(this.props.route.params.participants))}>
+                        <Text style={styles.text}>Visualizza Partecipanti</Text>
+                </TouchableOpacity>
 
                 <TouchableOpacity style={styles.button}
                               onPress = {() => this.props.navigation.navigate("Scrivi Commento",{
@@ -54,12 +59,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
       },
       button: {
+        alignSelf: 'center',
         alignItems: 'center',
         backgroundColor: 'rgba(142, 68, 173, 0.2)',
         padding: 20,
-        marginTop: 20,
+        marginTop: 10,
         width: 300,
-        borderRadius:50
+        borderRadius:50,
       },
       image: {
         flex: 1,

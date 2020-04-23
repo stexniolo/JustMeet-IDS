@@ -52,7 +52,7 @@ export default class PartecipazioneEventi extends React.Component {
     Limite partecipanti : {data.item.numPartecipanti}
   </Text>
      <View style={{ flex: 1 }}>
-         <TouchableOpacity style={styles.buttonPartecipa }
+         <TouchableOpacity style={styles.button }
                onPress = {() => this.props.navigation.navigate('Annulla Partecipazione',{
                           title : data.item.title,
                           idEvento: data.item.id,
@@ -103,10 +103,7 @@ export default class PartecipazioneEventi extends React.Component {
 
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: "#fff"
-    },
+  
     loader:{
       flex: 1,
       justifyContent: "center",
@@ -118,13 +115,10 @@ export default class PartecipazioneEventi extends React.Component {
       margin: 5,
       backgroundColor: "#fff"
     },
-    buttonPartecipa: {
-      alignSelf: 'stretch',
-      backgroundColor: '#2980B9'
-    },
     button: {
       alignSelf: 'stretch',
-      backgroundColor: '#2980B9'
+      backgroundColor: '#2980B9',
+      borderRadius: 20
     },
     text: {
       alignSelf: 'center',
