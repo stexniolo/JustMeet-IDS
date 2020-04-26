@@ -4,7 +4,6 @@ import MapView from 'react-native-maps';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 
-
 export default class GoogleMaps extends React.Component {
 
   constructor(props) {
@@ -12,35 +11,39 @@ export default class GoogleMaps extends React.Component {
   this.state = {
     loading: true,
     dataSource:[],
-    errorMessage: '',
-    locationX: 0,
-    locationY: 0
+    error: null,
+    latitude: 0,
+    longitude: 0
     };
   }
 
+  // DEVICE
   _getLocation = async() => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if(status !== 'granted'){
       console.log("Permission not granted");
     
-
     this.setState({
-      errorMessage: "PERMISSION NOT GRANTED"
+      error: "PERMISSION NOT GRANTED"
     })
   }
 
   const userLocation = await Location.getCurrentPositionAsync();
 
   this.setState({
-    locationX: userLocation.coords.latitude
+    latitude: userLocation.coords.latitude
   })
 
   this.setState({
-    locationY: userLocation.coords.longitude
+    longitude: userLocation.coords.longitude
   })
+
+  this.getAllEvents()
 }
-  componentDidMount(){
-  this._getLocation();
+
+
+
+getAllEvents = () => {
   fetch("http://192.168.1.9:8080/events")
   .then(response => response.json())
   .then((responseJson)=> {
@@ -48,7 +51,16 @@ export default class GoogleMaps extends React.Component {
     loading: false,
     dataSource: responseJson
     })
-  })
+  }).catch(error=>console.log(error))
+}
+
+
+  componentDidMount(){
+    //DEVICE
+    this._getLocation()
+
+    //EMULATORE
+    //this.getAllEvents()
   }
   
   
@@ -59,18 +71,26 @@ export default class GoogleMaps extends React.Component {
     <MapView style={styles.map}
         showsUserLocation= {true}
         region={{
-            latitude: this.state.locationX,
-            longitude: this.state.locationY,
-            latitudeDelta: 0.3,
-            longitudeDelta: 0.3
+            //DEVICE
+            latitude: this.state.latitude,
+            longitude: this.state.longitude,
+            
+            //EMULATORE 
+            //latitude: 43.40528,
+            //longitude: 13.54809,
+
+            latitudeDelta: 1.0,
+            longitudeDelta: 1.0
         }}>
 
     {this.state.dataSource.map(event => 
-        <MapView.Marker coordinate={{
+        <MapView.Marker 
+          key = {event.id}
+          coordinate={{
           latitude: event.location.latitudine,
           longitude: event.location.longitudine,
-          latitudeDelta: 0.9,
-          longitudeDelta: 0.9
+          latitudeDelta: 0.4,
+          longitudeDelta: 0.4
         }}
         title = {event.title}
         description = {event.description}/>

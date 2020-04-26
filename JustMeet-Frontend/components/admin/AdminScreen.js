@@ -43,6 +43,11 @@ export default class AdminScreen extends React.Component {
                                   onPress = {() => this.handleEmail()}>
                     <Text style={styles.text}>Invia Email</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity style={styles.button}
+                                  onPress = {() => this.props.navigation.replace("Benvenuto")}>
+                    <Text style={styles.text}>Logout</Text>
+          </TouchableOpacity>
      </View>
   )
   }

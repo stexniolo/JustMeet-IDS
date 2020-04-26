@@ -8,7 +8,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import Welcome from '././components/homepage/Welcome.js'
 import HomePage from '././components/homepage/HomePage.js'
 import EventList from '././components/event/EventList.js'
-import GoogleLogin from '././components/login/GoogleLogin.js'
 import LoginPage from '././components/login/LoginPage.js'
 import CreazioneEvento from '././components/event/CreazioneEvento.js'
 import PostEvento from '././components/event/PostEvento.js'
@@ -109,8 +108,7 @@ function App() {
         <Stack.Screen name = "Profilo Utente" component={ProfiloUtente} />
         <Stack.Screen name = "PostEvento" component={PostEvento} />
         <Stack.Screen name = "Crea un evento" component={CreazioneEvento} />
-        <Stack.Screen name = "LoginPage" component={LoginPage} />
-        <Stack.Screen name = "Login" component={GoogleLogin} />
+        <Stack.Screen name = "Login" component={LoginPage} />
         <Stack.Screen name = "Benvenuto" component={Welcome} />
         <Stack.Screen name = "Home Page" component={HomePage} />
         <Stack.Screen name = "Eventi" component={EventList} />

@@ -60,7 +60,13 @@ export default class NearEventsList extends React.Component {
   }
 
   nearEventListFunc(){
+    // DEVICE 
     fetch("http://192.168.1.9:8080/events/locations/"+this.state.locationX+"/"+this.state.locationY)
+    
+    //EMULATORE
+    //fetch("http://192.168.1.9:8080/events/locations/43.40528/13.54809")
+    
+
   .then(response => response.json())
   .then((responseJson)=> {
     this.setState({

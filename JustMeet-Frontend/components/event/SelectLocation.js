@@ -20,10 +20,6 @@ export default class SelectLocation extends React.Component {
     Permissions.askAsync(Permissions.LOCATION);
   }
 
-  static navigationOptions = {
-    title: 'Geocoding',
-  }
-
   _attemptGeocodeAsync = async (text) => {
     this.setState({ inProgress: true, error: null });
     try {

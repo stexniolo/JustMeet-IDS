@@ -18,6 +18,7 @@ export default class PartecipazioneMappa extends React.Component {
     };
   }
 
+  // DEVICE
   _getLocation = async() => {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
     if(status !== 'granted'){
@@ -39,7 +40,9 @@ export default class PartecipazioneMappa extends React.Component {
     locationY: userLocation.coords.longitude
   })
 }
+
   componentDidMount(){
+  //DEVICE
   this._getLocation();
   fetch("http://192.168.1.9:8080/users/"+this.props.route.params.email+"/participantEvent")
   .then(response => response.json())
@@ -59,14 +62,22 @@ export default class PartecipazioneMappa extends React.Component {
     <MapView style={styles.map}
         showsUserLocation= {true}
         region={{
-            latitude: this.state.locationX,
-            longitude: this.state.locationY,
-            latitudeDelta: 0.3,
-            longitudeDelta: 0.3
+          //DEVICE
+          latitude: this.state.locationX,
+          longitude: this.state.locationY,
+          
+          //EMULATORE
+          //latitude: 43.40528,
+          //longitude: 13.54809,  
+
+          latitudeDelta: 0.9,
+          longitudeDelta: 0.9
         }}>
 
     {this.state.dataSource.map(event => 
-        <MapView.Marker coordinate={{
+        <MapView.Marker 
+        key = {event.id}
+        coordinate={{
           latitude: event.location.latitudine,
           longitude: event.location.longitudine,
           latitudeDelta: 0.9,
