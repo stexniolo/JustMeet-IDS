@@ -52,6 +52,16 @@ class JustMeetTest {
 	
 	@Autowired
 	private TopicController topicController;
+	
+	@Test
+	public void clearDatabase() {
+		this.userRepository.deleteAll();
+		this.eventRepository.deleteAll();
+		this.locationRepository.deleteAll();
+		this.topicRepository.deleteAll();
+		assertEquals(0,this.userRepository.count()+this.eventRepository.count()
+					+this.locationRepository.count()+this.topicRepository.count());
+	}
 
 	@Test
 	public void findUserTest() {

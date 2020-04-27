@@ -1,5 +1,6 @@
 import React from "react";
 import {
+Alert,
 Dimensions,
 StyleSheet,
 View,
@@ -62,8 +63,19 @@ export default class EventiCreati extends React.Component {
      <View style={{borderLeftWidth: 1,borderLeftColor: 'white'}}/>
      <View style={{ flex: 1}}>
          <TouchableOpacity style={styles.buttonInfo}
-                             onPress = {() => this.props.navigation.navigate('Annulla Evento',{
-                               idEvento : data.item.id})}>
+                             onPress = {() => Alert.alert(  
+                              'Annulla Evento',  
+                              "Confermi di voler annullare l'evento?",  
+                              [  
+                                  {  
+                                      text: 'No',    
+                                      style: 'cancel',  
+                                  },  
+                                  {text: 'Si',
+                                   onPress: () =>   this.props.navigation.navigate('Annulla Evento',{
+                                    idEvento : data.item.id})},  
+                              ]  
+                             )}>
               <Text style={styles.text2}>Annulla</Text>
          </TouchableOpacity>
      </View>

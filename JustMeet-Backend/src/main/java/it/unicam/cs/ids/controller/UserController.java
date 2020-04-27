@@ -165,6 +165,12 @@ public class UserController {
 	        return true;
 	    }
 	  
+	  @DeleteMapping("/users/admin/{id}")
+	  	public boolean deleteById(@PathVariable String id) {
+	  		userRepository.deleteById(Integer.parseInt(id));
+	  		return true;
+	  	}
+	  
 	  
 	  @GetMapping("/users/{email}/comments")
 	  public Set<Commento> showMyComments(@PathVariable String email){

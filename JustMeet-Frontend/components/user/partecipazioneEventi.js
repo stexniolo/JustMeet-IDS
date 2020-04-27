@@ -1,5 +1,6 @@
 import React from "react";
 import {
+Alert,
 Dimensions,
 StyleSheet,
 View,
@@ -53,11 +54,23 @@ export default class PartecipazioneEventi extends React.Component {
   </Text>
      <View style={{ flex: 1 }}>
          <TouchableOpacity style={styles.button }
-               onPress = {() => this.props.navigation.navigate('Annulla Partecipazione',{
-                          title : data.item.title,
-                          idEvento: data.item.id,
-                          participantName: this.state.participantName,
-                          email: this.props.route.params.email})}>
+               onPress = {() => Alert.alert(  
+                'Annulla Partecipazione',  
+                'Confermi di voler annullare la partecipazione?',  
+                [  
+                    {  
+                        text: 'No',    
+                        style: 'cancel',  
+                    },  
+                    {text: 'Si',
+                     onPress: () =>   this.props.navigation.navigate('Annulla Partecipazione',{
+                      title : data.item.title,
+                      idEvento: data.item.id,
+                      participantName: this.state.participantName,
+                      email: this.props.route.params.email})},  
+                ]  
+            )}>
+
               <Text style={styles.text}>Annulla Partecipazione</Text>
          </TouchableOpacity>
      </View>
