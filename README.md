@@ -37,7 +37,7 @@ Si vuole realizzare un sistema software che permetta l’incontro tra persone al
 <img align="right" src="JustMeet-Frontend/components/images/SCOPRI EVENTI.jpeg" height="300">
 
 Gli utenti possono utilizzare la piattaforma per inserire eventi e per richiedere la partecipazione di altri eventi. In particolare la tipologia di evento richiederà di specificare diverse caratteristiche.
-Ad esempio il sistema potrebbe permettere di organizzare una partita di calcetto inserendo specifici dati quali: **luogo, orario, titolo, descrizione, topic,nome dell'organizzatore e numero massimo di partecipanti** necessari affinché l’evento abbia luogo. Se le condizioni saranno soddisfatte l'evento pubblico sarà reso non più visibile agli altri.
+Ad esempio il sistema potrebbe permettere di organizzare una partita di calcetto inserendo specifici dati quali: **luogo, orario, titolo, descrizione, topic,nome dell'organizzatore e numero massimo di partecipanti** necessari affinché l’evento abbia luogo. Una volta raggiunto il numero di partecipanti richiesto, l'evento non sarà più disponibile agli altri utenti.
 Parimenti sarà possibile organizzare seminari di studio, feste pubbliche, eventi sportivi di qualsiasi genere e molto altro. 
 
 Una volta effettuato il Login, l'utente sarà  in grado di creare il proprio evento e di visualizzare la lista di tutti gli eventi pubblicati,anche filtrando tali eventi in base alla posizione geografica dell'utente e ottenendo così i più **vicini** a lui. Inoltre l'utente potrà anche **commentare** gli eventi, creando così una rete sociale in cui i vari utenti possono comunicare tra di loro.
