@@ -68,6 +68,12 @@ In riferimento alla visualizzazione degli eventi nelle mappe geografiche invece,
 
 Infine per assicurarsi la legittimità dei luoghi degli eventi ci si è affidati a **Geolocator API**, un servizio speciale in grado di convertire un qualsiasi indirizzo civico in coordinate geografiche. 
 
+
+# 🧪 Test eseguiti <a name = "test"></a>
+
+Sono stati realizzati un complessivo di 31 test tramite la libreria **JUnit** al fine di verificare il corretto funzionamento delle principali chiamate Api Rest e per assicurarsi che le singole unità di sviluppo assolvano le sue funzioni secondo i requisiti previsti.
+
+
 # 🎯 Obiettivi futuri <a name = "obiettivi"></a>
 
 Si continuerà con lo sviluppo del sistema ampliando le funzionalità e possibilità offerte, integrando le seguenti feature, che per motivi di tempo (progetto universitario) non sono state implementate:
