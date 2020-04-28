@@ -34,6 +34,8 @@
 
 Si vuole realizzare un sistema software che permetta l’incontro tra persone al fine di svolgere attività cooperative e di squadra. L’obiettivo del sistema è dunque favorire la creazione di gruppi e di nuove amicizie e deve funzionare come una sorta di bacheca avanzata di **annunci pubblici** e di coordinamento.
 
+<img align="right" src="JustMeet-Frontend/components/images/SCOPRI EVENTI.jpeg" height="300">
+
 Gli utenti possono utilizzare la piattaforma per inserire eventi e per richiedere la partecipazione di altri eventi. In particolare la tipologia di evento richiederà di specificare diverse caratteristiche.
 Ad esempio il sistema potrebbe permettere di organizzare una partita di calcetto inserendo specifici dati quali: **luogo, orario, titolo, descrizione, topic,nome dell'organizzatore e numero massimo di partecipanti** necessari affinché l’evento abbia luogo. Se le condizioni saranno soddisfatte l'evento pubblico sarà reso non più visibile agli altri.
 Parimenti sarà possibile organizzare seminari di studio, feste pubbliche, eventi sportivi di qualsiasi genere e molto altro. 
