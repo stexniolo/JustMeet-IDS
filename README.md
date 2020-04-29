@@ -17,6 +17,8 @@
 
 - [Presentazione del progetto](#panoramica)
 - [Tecnologie di base](#tecno)
+- [Test eseguiti](#test)
+- [Workflow Iterazioni](#workflow)
 - [Obiettivi futuri](#obiettivi)
 - [Autori](#autore)
 
@@ -73,6 +75,50 @@ Infine per assicurarsi la legittimità dei luoghi degli eventi ci si è affidati
 
 Sono stati realizzati un complessivo di 31 test tramite la libreria **JUnit** al fine di verificare il corretto funzionamento delle principali chiamate Api Rest e per assicurarsi che le singole unità di sviluppo assolvano le sue funzioni secondo i requisiti previsti.
 
+
+# 📁 Workflow Iterazioni <a name="workflow"></a>
+
+Il workflow è stato suddiviso in 4 iterazioni dalla durata di 2 settimane ciascuna. Per semplicità di organizzazione si è deciso che la scadenza di ogni iterazione coincidesse con la domenica della seconda settimana e l'inizio di una nuova iterazione coincidesse con il lunedì successivo. Nella tabella seguente sono elencate le date di inizio e scadenza di ogni iterazione:
+
+<table style="width:100%">
+  <tr>
+    <th># Iterazione</th>
+    <th>Data di inizio</th> 
+    <th>Data di scadenza</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>08/03/2020</td>
+    <td>22/03/2020</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>23/03/2020</td>
+    <td>05/04/2020</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>6/04/2020</td>
+    <td>19/04/2020</td>
+  </tr>
+   <tr>
+    <td>4</td>
+    <td>20/04/2020</td>
+    <td>03/05/2020</td>
+  </tr>
+</table>
+
+Breve riassunto delle classi implementate nelle varie iterazioni:
+
+Iterazione **I**) Implementata la classe **Event** con i relativi Controller e Repository. Implementati test JUnit sulle chiamate API di EventControlle;
+
+Iterazione **II**) Implementata la classe **User** con i relativi Controller e Repository. Implementati test JUnit sulle chiamate API di UserController;
+
+Iterazione **III**) Implementate le classi **Location** e **Topic** con i relativi Controller e Repository. Implementati test JUnit sulle chiamate API di LocationController e TopicController;
+
+Iterazione **IV**) Implementate le classi **Commento** e **Scheduler** con i relativi Controller e Repository. Implementati test JUnit sulle chiamate API di CommentoController e SchedulerController ed eseguito Integration Test dei componenti.
+
+Durante lo svolgimento di un'iterazione più avanzata sono comunque state effettuate modifiche a componenti delle iterazioni precedenti per rispettare la natura evolutiva del processo unificato.
 
 # 🎯 Obiettivi futuri <a name = "obiettivi"></a>
 
