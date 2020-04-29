@@ -20,7 +20,7 @@
 - [Test eseguiti](#test)
 - [Workflow Iterazioni](#workflow)
 - [Obiettivi futuri](#obiettivi)
-- [Autori](#autore)
+- [Autori](#autori)
 
 # 📝 Presentazione del progetto <a name = "panoramica"></a>
 
