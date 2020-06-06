@@ -9,7 +9,7 @@
 <img src="https://forthebadge.com/images/badges/built-with-love.svg"/>
 <img src="https://forthebadge.com/images/badges/built-for-android.svg"/>
 <img src="https://forthebadge.com/images/badges/cc-0.svg"/><br><br>
-    <b>JustMeet</b>, progetto realizzato in <b>React Native</b> per il corso di <b>Ingegneria del Software</b> presso <b>Unicam</b>, <i>nell'anno accademico 2019/2020</i>, realizzato dagli studenti Stefano Perniola e Loris Palmucci seguendo i canoni di sviluppo proposti
+    <b>JustMeet</b>, progetto realizzato in <b>React Native</b> per il corso di <b>Ingegneria del Software</b> presso <b>Unicam</b>, <i>nell'anno accademico 2019/2020</i>, realizzato dallo studente Stefano Perniola seguendo i canoni di sviluppo proposti
     <br><br><b>
 </b></p>
 
@@ -20,7 +20,7 @@
 - [Test eseguiti](#test)
 - [Workflow Iterazioni](#workflow)
 - [Obiettivi futuri](#obiettivi)
-- [Autori](#autori)
+- [Autore](#autore)
 
 # 📝 Presentazione del progetto <a name = "panoramica"></a>
 
@@ -129,7 +129,6 @@ Si continuerà con lo sviluppo del sistema ampliando le funzionalità e possibil
 - Implementazione di una nuova feature che permette la possibilità di eseguire la Login o Registrazione con altri **Social Network**;
 - Implementazione di una nuova feature che permette la possibilità di inserire **metodi di pagamento** per eventi che prevedono possibili costi.
 
-# 🔭 Autori <a name = "autori"></a>
+# 🔭 Autore <a name = "autore"></a>
 
-- [Stefano Perniola](https://github.com/xniola)
-- [Loris Palmucci](https://github.com/UncleJason88)
+- [Stefano Perniola](https://github.com/stexniolo)
