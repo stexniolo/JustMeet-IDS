@@ -131,4 +131,4 @@ Si continuerà con lo sviluppo del sistema ampliando le funzionalità e possibil
 
 # 🔭 Autore <a name = "autore"></a>
 
-- [Stefano Perniola](https://github.com/stexniolo)
+- [Stefano Perniola](https://github.com/xniola)
