@@ -9,20 +9,19 @@
 <img src="https://forthebadge.com/images/badges/built-with-love.svg"/>
 <img src="https://forthebadge.com/images/badges/built-for-android.svg"/>
 <img src="https://forthebadge.com/images/badges/cc-0.svg"/><br><br>
-    <b>JustMeet</b>, progetto realizzato in <b>React Native</b> per il corso di <b>Ingegneria del Software</b> presso <b>Unicam</b>, <i>nell'anno accademico 2019/2020</i>, realizzato dallo studente Stefano Perniola seguendo i canoni di sviluppo proposti
+    <b>JustMeet</b> is a project realized in <b>React Native</b> for the course of <b>Software Engineering</b> at <b>Unicam</b>, in the <i>academic year 2019/2020</i>, created by student Stefano Perniola following the proposed development canons
     <br><br><b>
 </b></p>
 
-# 📔 Tabella dei contenuti
+# 📔 Table of Contents
 
-- [Presentazione del progetto](#panoramica)
-- [Tecnologie di base](#tecno)
-- [Test eseguiti](#test)
-- [Workflow Iterazioni](#workflow)
-- [Obiettivi futuri](#obiettivi)
-- [Autore](#autore)
+- [Project Presentation](#panoramica)
+- [Core Technologies](#tecno)
+- [Tests](#test)
+- [Workflow Iterations](#workflow)
+- [Author](#autore)
 
-# 📝 Presentazione del progetto <a name = "panoramica"></a>
+# 📝 Project Presentation <a name = "panoramica"></a>
 
 <table style="width:25%">
   <tr>
@@ -33,58 +32,55 @@
   </tr>
 </table>
 
-
-Si vuole realizzare un sistema software che permetta l’incontro tra persone al fine di svolgere attività cooperative e di squadra. L’obiettivo del sistema è dunque favorire la creazione di gruppi e di nuove amicizie e deve funzionare come una sorta di bacheca avanzata di **annunci pubblici** e di coordinamento.
+The purpose is to create a software system that allows people to meet each other in order to carry out cooperative and team activities. Thus, the goal of the system is to encourage the creation of groups and new friendships and should work as a kind of advanced bulletin board of **public announcements** and coordination.
 
 <img align="right" src="JustMeet-Frontend/components/images/SCOPRI EVENTI.jpeg" height="300">
 
-Gli utenti possono utilizzare la piattaforma per inserire eventi e per richiedere la partecipazione di altri eventi. In particolare la tipologia di evento richiederà di specificare diverse caratteristiche.
-Ad esempio il sistema potrebbe permettere di organizzare una partita di calcetto inserendo specifici dati quali: **luogo, orario, titolo, descrizione, topic,nome dell'organizzatore e numero massimo di partecipanti** necessari affinché l’evento abbia luogo. Una volta raggiunto il numero di partecipanti richiesto, l'evento non sarà più disponibile agli altri utenti.
-Parimenti sarà possibile organizzare seminari di studio, feste pubbliche, eventi sportivi di qualsiasi genere e molto altro. 
+Users can use the platform to publish events and to request the participation of other events. In particular, the type of event will require them to specify several characteristics.
+For example, the system might allow organizing a soccer match by entering specific data such as: **location, time, title, description, topic,name of organizer and maximum number of participants** required for the event to take place. Once the required number of participants is reached, the event will no longer be available to other users.
+Likewise, it will be possible to organize study seminars, public parties, sporting events of any kind, and more. 
 
-Una volta effettuato il Login, l'utente sarà  in grado di creare il proprio evento e di visualizzare la lista di tutti gli eventi pubblicati,anche filtrando tali eventi in base alla posizione geografica dell'utente e ottenendo così i più **vicini** a lui. Inoltre l'utente potrà anche **commentare** gli eventi, creando così una rete sociale in cui i vari utenti possono comunicare tra di loro.
-Grazie al **topic** che caratterizza un Evento creato, l'utente può essere subito informato sulle attività di suo interesse che si svolgeranno e visualizzarle sulla **mappa**. Potrà altresì mettere la sua partecipazione per informare l'organizzatore della sua presenza.
-Nello sviluppo dell’applicazione è stato necessario focalizzarsi e definire la lista degli eventi che la piattaforma supporta.
-
-La **tutela della leggitimità** degli eventi è importante,infatti un **moderatore** sarà incaricato di rimuovere eventi illeggittimi o utenti che non rispettano le buone norme di comportamento.
+Once logged in, the user will be able to create his or her own event and view the list of all published events, even filtering those events according to the user's geographic location and thus getting the ones **closest** to him or her. In addition, the user will also be able to **comment** on events, thus creating a social network in which various users can communicate with each other.
+Thanks to the **topic** that characterizes a created Event, the user can be immediately informed about the activities of his interest that will take place and view them on the **map**. He will also be able to put his participation to inform the organizer of his presence.
+In developing the application, it was necessary to focus on and define the list of events that the platform supports.
 
 
-# 🧰 Tecnologie di base <a name = "tecno"></a>
+# 🧰 Core Technologies <a name = "tecno"></a>
 
 <img align="left" src="JustMeet-Frontend/components/images/HOMEPAGE.jpeg" height="300">
 
-Il lato frontend dell’applicativo si rivolge al mondo Mobile ed è stato sviluppato nel linguaggio di programmazione **Javascript** mediante il framework Open Source **React Native**.
+The frontend side of the application is aimed at the Mobile world and was developed in the **Javascript** programming language using the **React Native** Open Source framework.
 
-L'esperienza di navigazione all'interno dell'applicativo è governata da uno **Stack Navigator**, ovvero una configurazione che permette la navigazione fra i vari componenti in maniera sequenziale, dove ogni nuova schermata è posta in cima allo stack.
-Ci si è affidati all'interazione con i servizi attraverso interfacce estese di JpaRepository per quanto riguarda la persistenza dei dati, che sono stati elaborati e gestiti direttamente all'interno del framework di sviluppo backend.
+The navigation experience within the application is governed by a **Stack Navigator**, which is a configuration that allows navigation between the various components in a sequential manner, where each new screen is placed at the top of the stack.
+We relied on interaction with services through extended JpaRepository interfaces regarding data persistence, which was processed and managed directly within the backend development framework.
 
-Una seconda implementazione della logica si è basata su un backend scritto in linguaggio **Java**. L'interazione tra frontend e backend è stata resa possibile grazie alla creazione di **API Rest**, la cui scrittura e gestione, sono state rese possibili grazie al framework **Spring Boot**. Per la persistenza dei dati del servizio ci si è affidati al database relazionale **MySQL Workbench**. Per poter rendere più agevole la scrittura del codice tramite l'uso di annotazioni, si è deciso di impiegare la libreria Java **Spring Persistence**.
+A second implementation of the logic was based on a backend written in the **Java** language. The interaction between frontend and backend was made possible through the creation of **API Rest**, the writing and management of which, were made possible thanks to the **Spring Boot** framework. The **MySQL Workbench** relational database was relied upon for the persistence of the service data. In order to make it easier to write code through the use of annotations, it was decided to employ the **Spring Persistence** Java library.
 
 <img align="right" src="JustMeet-Frontend/components/images/MAPPA EVENTI.jpeg" height="300">
 
-Per quanto concerne l'utilizzo di alcuni servizi essenziali per gli utenti si è deciso di affidarsi ai servizi API forniti da **Google**, non correlati a quella che è la logica di backend dell'applicativo.
+Regarding the use of some essential services for users, it was decided to rely on the API services provided by **Google**, unrelated to what is the backend logic of the application.
 
-Basandosi su un sistema sicuro e affidabile per quanto riguarda l'autenticazione, si è deciso di impiegare il sistema **Google OAuth 2.0**.
+Relying on a secure and reliable system regarding authentication, it was decided to employ the **Google OAuth 2.0** system.
 
-In riferimento alla visualizzazione degli eventi nelle mappe geografiche invece, si è deciso di utilizzare le API **Google Maps**, rese accessibili grazie al modulo react-native-maps integrato nel frontend.
+In reference to the visualization of events in geographic maps, on the other hand, it was decided to use the **Google Maps** API, made accessible thanks to the react-native-maps module integrated in the frontend.
 
-Infine per assicurarsi la legittimità dei luoghi degli eventi ci si è affidati a **Geolocator API**, un servizio speciale in grado di convertire un qualsiasi indirizzo civico in coordinate geografiche. 
+Finally, to ensure the legitimacy of event locations we relied on **Geolocator API**, a special service capable of converting any street address into geographic coordinates. 
 
 
-# 🧪 Test eseguiti <a name = "test"></a>
+# 🧪 Tests <a name = "test"></a>
 
 Sono stati realizzati un complessivo di 31 test tramite la libreria **JUnit** al fine di verificare il corretto funzionamento delle principali chiamate Api Rest e per assicurarsi che le singole unità di sviluppo assolvano le sue funzioni secondo i requisiti previsti.
 
 
-# 📁 Workflow Iterazioni <a name="workflow"></a>
+# 📁 Workflow Iterations <a name="workflow"></a>
 
-Il workflow è stato suddiviso in 4 iterazioni dalla durata di 2 settimane ciascuna. Per semplicità di organizzazione si è deciso che la scadenza di ogni iterazione coincidesse con la domenica della seconda settimana e l'inizio di una nuova iterazione coincidesse con il lunedì successivo. Nella tabella seguente sono elencate le date di inizio e scadenza di ogni iterazione:
+The workflow was divided into 4 iterations lasting 2 weeks each. For ease of organization, it was decided that the expiration of each iteration would coincide with the Sunday of the second week and the start of a new iteration would coincide with the following Monday. The following table lists the start and expiration dates of each iteration:
 
 <table style="width:100%">
   <tr>
-    <th># Iterazione</th>
-    <th>Data di inizio</th> 
-    <th>Data di scadenza</th>
+    <th># Iteration</th>
+    <th>Starting date</th> 
+    <th>Expiration date</th>
   </tr>
   <tr>
     <td>1</td>
@@ -108,27 +104,18 @@ Il workflow è stato suddiviso in 4 iterazioni dalla durata di 2 settimane ciasc
   </tr>
 </table>
 
-Breve riassunto delle classi implementate nelle varie iterazioni:
+A brief summary of the classes implemented in the various iterations:
 
-Iterazione **I**) Implementata la classe **Event** con i relativi Controller e Repository. Implementati test JUnit sulle chiamate API di EventControlle;
+Iteration **I**) Implemented the **Event** class with related Controllers and Repositories. Implemented JUnit tests on EventControlle API calls;
 
-Iterazione **II**) Implementata la classe **User** con i relativi Controller e Repository. Implementati test JUnit sulle chiamate API di UserController;
+Iteration **II**) Implemented the **User** class with related Controllers and Repositories. Implemented JUnit tests on the API calls of UserController;
 
-Iterazione **III**) Implementate le classi **Location** e **Topic** con i relativi Controller e Repository. Implementati test JUnit sulle chiamate API di LocationController e TopicController;
+Iteration **III**) Implemented the **Location** and **Topic** classes with related Controllers and Repositories. Implemented JUnit tests on the API calls of LocationController and TopicController;
 
-Iterazione **IV**) Implementate le classi **Commento** e **Scheduler** con i relativi Controller e Repository. Implementati test JUnit sulle chiamate API di CommentoController e SchedulerController ed eseguito Integration Test dei componenti.
+Iteration **IV**) Implemented the **Comment** and **Scheduler** classes with related Controllers and Repositories. Implemented JUnit tests on the API calls of CommentController and SchedulerController and performed Integration Tests of the components.
 
-Durante lo svolgimento di un'iterazione più avanzata sono comunque state effettuate modifiche a componenti delle iterazioni precedenti per rispettare la natura evolutiva del processo unificato.
+While conducting a more advanced iteration, however, changes were made to components of previous iterations to respect the evolutionary nature of the unified process.
 
-# 🎯 Obiettivi futuri <a name = "obiettivi"></a>
-
-Si continuerà con lo sviluppo del sistema ampliando le funzionalità e possibilità offerte, integrando le seguenti feature, che per motivi di tempo (progetto universitario) non sono state implementate:
-- Implementazione di una nuova feature che permette la possibilità di **stringere amicizia** con altri utenti della piattaforma;
-- Implementazione di una nuova feature che permette la possibilità di creare **eventi privati** (visibili solo dagli amici dell'organizzatore dell'evento);
-- Implementazione di una nuova feature che permette la possibilità di **ricevere notifiche** in maniera automatica per tutti i partecipanti di un evento una volta che esso abbia raggiunto il numero massimo di partecipanti;
-- Implementazione di una nuova feature che permette la possibilità di eseguire la Login o Registrazione con altri **Social Network**;
-- Implementazione di una nuova feature che permette la possibilità di inserire **metodi di pagamento** per eventi che prevedono possibili costi.
-
-# 🔭 Autore <a name = "autore"></a>
+# 🔭 Author <a name = "autore"></a>
 
 - [Stefano Perniola](https://github.com/xniola)
